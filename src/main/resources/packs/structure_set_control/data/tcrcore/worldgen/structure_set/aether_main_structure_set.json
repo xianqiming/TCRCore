@@ -13,6 +13,10 @@
     {
       "structure": "aether:gold_dungeon",
       "weight": 1
+    },
+    {
+      "structure": "lost_aether_content:platinum_dungeon",
+      "weight": 1
     }
   ]
 }

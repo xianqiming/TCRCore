@@ -3,12 +3,15 @@
 	only_overlap = false
 	#Radius (in blocks) to check for nearby structures/features. 0.0 ~ 1000.0
 	#Range: 0.0 ~ 1000.0
-	checkRadius = 100.0
+	checkRadius = 50.0
 	#Maximum number of structures/features allowed within the radius. 0 ~ 16
 	#Range: 0 ~ 16
 	maxNearby = 1
 	#Structures that will always generate regardless of overlap (registry names). Example: 'minecraft:ancient_city'
-	whitelistStructures = []
+	whitelistStructures = ["cataclysm:soul_black_smith", "cataclysm:ruined_citadel", "cataclysm:burning_arena", "cataclysm:ancient_factory", "cataclysm:sunken_city", "cataclysm:cursed_pyramid", "cataclysm:frosted_prison", "cataclysm:acropolis",#灾变维度
+        "betterfortresses:fortress", "irons_spellbooks:citadel", "tcrcore:gate_of_disaster",#地狱结构
+        "aquamirae:ship", "aquamirae:shelter", "aquamirae:outpost", "aquamirae:surface/arch", "aquamirae:surface/spiral",#海灵
+        "aether:silver_dungeon", "aether:gold_dungeon", "lost_aether_content:platinum_dungeon"]#天境结构
 	#Features that will always generate regardless of overlap (registry names). Example: 'minecraft:tree'
 	whitelistFeatures = []
 	#Structures that will never generate (registry names). Example: 'minecraft:shipwreck'
