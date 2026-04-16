@@ -11,6 +11,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * 确保能生成并记录
+ */
 @Mixin(NoMoreTooManyStructuresPlacementValidator.class)
 public class NoMoreTooManyStructuresPlacementValidatorMixin {
 
