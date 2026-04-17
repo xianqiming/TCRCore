@@ -67,7 +67,7 @@ public class TCRAnimations {
     public static AnimationManager.AnimationAccessor<AttackAnimation> TSUNAMI;
     public static AnimationManager.AnimationAccessor<AttackAnimation> SCYTHE_HARVEST;
     public static AnimationManager.AnimationAccessor<StaticAnimation> CLAP;
-    public static AnimationManager.AnimationAccessor<UltimateAttackAnimation> SOLAR_BRASERO_OBSCURIDAD;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> SOLAR_BRASERO_OBSCURIDAD;
 
     @SubscribeEvent
     public static void registerAnimations(AnimationManager.AnimationRegistryEvent event) {
