@@ -16,6 +16,7 @@
     "BedBlockMixin",
     "BoatItemMixin",
     "CaptainCorneliaMixin",
+    "ChunkGeneratorMixin",
     "DragonBaseMixin",
     "DrownedMixin",
     "FAArmorItemMixin",
