@@ -172,7 +172,7 @@ public class ClientModEvents {
         }));
         event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_ZOMBIE.get(), (entityType -> {
             LivingEntityRenderer renderer = ((LivingEntityRenderer) context.getEntityRenderDispatcher().renderers.get(EntityType.ZOMBIE));
-            return new PresetRenderer(context, entityType, renderer, ((AssetAccessor) Meshes.SKELETON));
+            return new PresetRenderer(context, entityType, renderer, ((AssetAccessor) Meshes.BIPED_OLD_TEX));
         }));
         event.addPatchedEntityRenderer(ForgottenModule.forgottenType, (entityType -> new PHumanoidRenderer<>(Meshes.SKELETON, context, entityType)));
         event.addPatchedEntityRenderer(TCRBossEntities.CITADEL_KEEPER.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
