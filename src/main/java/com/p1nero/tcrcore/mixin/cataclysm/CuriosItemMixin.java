@@ -52,4 +52,15 @@ public abstract class CuriosItemMixin extends Item implements ICurioItem {
         return original.call(slotContext, uuid, stack);
     }
 
+    /**
+     * 统一戒指槽位
+     */
+    @WrapMethod(method = "withAttributes", remap = false)
+    private CuriosItem tcr$withAttributes(String slot, AttributeContainer[] attributes, Operation<CuriosItem> original) {
+        if(slot.equals("rings")) {
+            slot = "ring";
+        }
+        return original.call(slot, attributes);
+    }
+
 }
