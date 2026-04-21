@@ -519,18 +519,21 @@ public class LivingEntityEventListeners {
 
             if (livingEntity instanceof DragonBase dragonBase) {
                 if (dragonBase.getOwnerUUID() != null) {
-                    BlockPos bedPos = TameableUtils.getPetBedPos(event.getEntity());
-                    if (bedPos == null) {
-                        if (dragonBase.getOwner() instanceof Player player) {
-                            dragonBase.setHealth(dragonBase.getMaxHealth());
-                            ItemStack itemStack = TCRItems.DRAGON_FLUTE.get().getDefaultInstance();
-                            DragonFluteItem.saveToItem(itemStack, dragonBase);
-                            itemStack.getOrCreateTag().putBoolean("tcr_temp", true);
-                            ItemUtil.addItemEntity(player, itemStack);
-                            player.displayClientMessage(TCRCoreMod.getInfo("dragon_die_back").withStyle(ChatFormatting.GOLD), false);
+                    dragonBase.setHealth(dragonBase.getMaxHealth());
+                    ItemStack itemStack = TCRItems.DRAGON_FLUTE.get().getDefaultInstance();
+                    DragonFluteItem.saveToItem(itemStack, dragonBase);
+                    itemStack.getOrCreateTag().putBoolean("tcr_temp", true);
+                    if (dragonBase.getOwner() instanceof Player player) {
+                        ItemUtil.addItemEntity(player, itemStack);
+                        player.displayClientMessage(TCRCoreMod.getInfo("dragon_die_back").withStyle(ChatFormatting.GOLD), false);
+                    } else {
+                        List<Player> players = EntityUtil.getNearByPlayers(dragonBase, 32);
+                        if(!players.isEmpty()) {
+                            ItemUtil.addItemEntity(players.get(0), itemStack);
+                        } else {
+                            ItemUtil.addItemEntity(dragonBase, itemStack);
                         }
                     }
-
                 }
             }
 
