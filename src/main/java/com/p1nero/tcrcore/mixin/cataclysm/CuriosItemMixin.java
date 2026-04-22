@@ -60,6 +60,12 @@ public abstract class CuriosItemMixin extends Item implements ICurioItem {
         if(slot.equals("rings")) {
             slot = "ring";
         }
+        if(slot.equals("waist")) {
+            slot = "belt";
+        }
+        if(slot.equals("talisman")) {
+            slot = "necklace";
+        }
         return original.call(slot, attributes);
     }
 
