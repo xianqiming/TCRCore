@@ -3,8 +3,6 @@ package com.p1nero.tcrcore.events;
 import com.aetherteam.aether.entity.monster.dungeon.Mimic;
 import com.aetherteam.aether.entity.monster.dungeon.Valkyrie;
 import com.brass_amber.ba_bt.block.block.BTChestBlock;
-import com.brass_amber.ba_bt.block.blockentity.BTChestBlockEntity;
-import com.brass_amber.ba_bt.entity.block.BTAbstractObelisk;
 import com.brass_amber.ba_bt.entity.block.BTMonolith;
 import com.brass_amber.ba_bt.entity.hostile.golem.*;
 import com.brass_amber.ba_bt.init.BTEntityType;
@@ -24,12 +22,10 @@ import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Kobolediator
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.The_Prowler_Entity;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Wadjet_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
-import com.github.alexthe668.domesticationinnovation.server.entity.TameableUtils;
 import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.Bone_Chimera_Entity;
 import com.hm.efn.registries.EFNItem;
 import com.hm.efn.registries.EFNMobEffectRegistry;
 import com.obscuria.aquamirae.Aquamirae;
-import com.obscuria.aquamirae.AquamiraeUtils;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.battle_field1.PBF1Mod;
@@ -83,6 +79,7 @@ import net.mehvahdjukaar.dummmmmmy.network.NetworkHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
@@ -111,6 +108,7 @@ import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -201,9 +199,6 @@ public class LivingEntityEventListeners {
                 }
                 if (entity.getRandom().nextFloat() < 0.01F) {
                     ItemUtil.addItemEntity(entity, Items.NETHERITE_INGOT, 1, 0xc000ff);
-                }
-                if (!event.getEntity().getLootTable().toString().endsWith("captain") && entity.hasGlowingTag()) {
-                    ItemUtil.addItemEntity(entity, AquamiraeItems.SHELL_HORN.get(), 1, ChatFormatting.GOLD.getColor());
                 }
             } else if (entity instanceof Enemy) {
                 if (entity.getRandom().nextFloat() < 0.1F) {
@@ -497,19 +492,19 @@ public class LivingEntityEventListeners {
 
             }
 
-            if(livingEntity instanceof Valkyrie) {
+            else if(livingEntity instanceof Valkyrie) {
                 livingEntity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);//防止掉落
             }
 
             //打似战灵爆mimic
-            if (livingEntity instanceof WraithonEntity) {
+            else if (livingEntity instanceof WraithonEntity) {
                 if (serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), (Entity::isAlive)).isEmpty()) {
                     TCREntities.TCR_MIMIC.get().spawn(serverLevel, livingEntity.getOnPos().above(5), MobSpawnType.MOB_SUMMONED);
                 }
             }
 
             //打似最终boss处理通关
-            if (livingEntity instanceof TCRMimic) {
+            else if (livingEntity instanceof TCRMimic) {
                 serverLevel.players().forEach(serverPlayer -> {
                     if (TCRQuestManager.hasQuest(serverPlayer, TCRQuests.KILL_MAD_CHRONOS)) {
                         TCRCapabilityProvider.getTCRPlayer(serverPlayer).setTickAfterBossDieLeft(600);
@@ -517,7 +512,22 @@ public class LivingEntityEventListeners {
                 });
             }
 
-            if (livingEntity instanceof DragonBase dragonBase) {
+            //掉号角的怪重生
+            else if (event.getEntity() instanceof Pillager pillager) {
+                if(pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") || pillager.hasGlowingTag()) {
+                    SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(pillager, 1200, true);
+                    if(soulEntity != null) {
+                        soulEntity.setRespawnWhenLoadFromDisk(true);
+                        soulEntity.setPos(readSpawnPos(pillager).add(0, 0.5, 0));
+                    }
+                }
+                if (!pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") && pillager.hasGlowingTag()) {
+                    ItemUtil.addItemEntity(pillager, AquamiraeItems.SHELL_HORN.get(), 1, ChatFormatting.GOLD.getColor());
+                }
+            }
+
+            //龙复活
+            else if (livingEntity instanceof DragonBase dragonBase) {
                 if (dragonBase.getOwnerUUID() != null) {
                     dragonBase.setHealth(dragonBase.getMaxHealth());
                     dragonBase.getPersistentData().putBoolean(TRIGGERED, false);
@@ -539,29 +549,30 @@ public class LivingEntityEventListeners {
                 dragonBase.getPersistentData().putBoolean(TRIGGERED, true);
             }
 
-            if (livingEntity instanceof IronGolem ironGolem && WorldUtil.isInStructure(livingEntity, WorldUtil.SKY_GOLEM) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
+            else if (livingEntity instanceof IronGolem ironGolem && WorldUtil.isInStructure(livingEntity, WorldUtil.SKY_GOLEM) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                 //秽土转生
-                EntityRespawnerMod.addToRespawn(ironGolem, 60, true);
+                EntityRespawnerMod.createSoulEntity(ironGolem, 60, true);
                 ItemUtil.addItemEntity(livingEntity, TCRItems.DIVINE_FRAGMENT.get(), 1, ChatFormatting.GOLD.getColor().intValue());
                 livingEntity.getPersistentData().putBoolean("already_respawn", true);
             }
 
-            if(livingEntity instanceof EveningGhostEntity entity) {
-                SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(entity, 1200, true);
+            else if(livingEntity instanceof EveningGhostEntity entity) {
+                SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
                     soulEntity.setPos(entity.getSpawnPos().above().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
-            if(livingEntity instanceof ValkyrieQueenEntity entity) {
-                SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(entity, 1200, true);
+
+            else if(livingEntity instanceof ValkyrieQueenEntity entity) {
+                SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
                     soulEntity.setPos(entity.getSpawnPos().above().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
-            if(livingEntity instanceof GildedHunterEntity entity) {
-                SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(entity, 1200, true);
+            else if(livingEntity instanceof GildedHunterEntity entity) {
+                SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
                     soulEntity.setPos(entity.getSpawnPos().above().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
@@ -569,7 +580,7 @@ public class LivingEntityEventListeners {
             }
 
             //末影龙似了直接连战末地傀儡
-            if (livingEntity instanceof EnderDragon) {
+            else if (livingEntity instanceof EnderDragon) {
                 if (livingEntity.getServer() != null) {
                     ServerLevel end = livingEntity.getServer().getLevel(Level.END);
                     if (end != null && end.getEntities(BTEntityType.END_GOLEM.get(), (LivingEntity::isAlive)).isEmpty()
@@ -580,10 +591,10 @@ public class LivingEntityEventListeners {
                 }
             }
 
-            if (livingEntity instanceof Bone_Chimera_Entity boneChimeraEntity) {
+            else if (livingEntity instanceof Bone_Chimera_Entity boneChimeraEntity) {
                 if (WorldUtil.isInStructure(livingEntity, WorldUtil.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                     //偷懒，直接秽土转生
-                    SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(boneChimeraEntity, 200, true);
+                    SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(boneChimeraEntity, 200, true);
                     if (boneChimeraEntity.getTags().contains("tcr-has-spawn-pos") && soulEntity != null) {
                         soulEntity.setPos(readSpawnPos(boneChimeraEntity).add(0, 2, 0));
                         EntityUtil.nearPlayerDo(boneChimeraEntity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 10).withStyle(ChatFormatting.GOLD), false));
@@ -594,7 +605,7 @@ public class LivingEntityEventListeners {
             }
 
             //傀儡死了掉石碑
-            if (livingEntity instanceof AbstractGolem abstractGolem) {
+            else if (livingEntity instanceof AbstractGolem abstractGolem) {
                 EntityType<BTMonolith> entityType = GolemType.getMonolithFor(abstractGolem.golemType);
                 Item item = getMonolithKeyItemFor(abstractGolem.golemType);
                 BlockPos home = livingEntity.getEntityData().get(((AbstractGolemInvoker) livingEntity).getSpawnPosKey());
@@ -627,24 +638,24 @@ public class LivingEntityEventListeners {
             }
 
             //一些杂乱战利品
-            if(livingEntity instanceof Wadjet_Entity || livingEntity instanceof Kobolediator_Entity) {
+            else if(livingEntity instanceof Wadjet_Entity || livingEntity instanceof Kobolediator_Entity) {
                 if(livingEntity.getRandom().nextBoolean()) {
                     ItemUtil.addItemEntity(livingEntity, ModItems.NECKLACE_OF_THE_DESERT.get(), 1, ChatFormatting.GOLD.getColor());
                 }
             }
 
-            if(livingEntity instanceof The_Prowler_Entity) {
+            else if(livingEntity instanceof The_Prowler_Entity) {
                 ItemUtil.addItemEntity(livingEntity, Items.GUNPOWDER, 6, ChatFormatting.GOLD.getColor());
             }
 
-            if(livingEntity instanceof PiglinBrute) {
+            else if(livingEntity instanceof PiglinBrute) {
                 if(livingEntity.getTags().contains("tcr_drop_nether_golem_key") || WorldUtil.isInStructure(livingEntity, "tcrcore:gate_of_disaster")) {
                     ItemUtil.addItemEntity(livingEntity, BTItems.NETHER_MONOLITH_KEY.get(), 1, ChatFormatting.GOLD.getColor());
                 }
             }
 
             //===================服务端玩家===================
-            if (livingEntity instanceof ServerPlayer serverPlayer && !event.isCanceled()) {
+            else if (livingEntity instanceof ServerPlayer serverPlayer && !event.isCanceled()) {
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
 
                 if (serverPlayer.level().dimension() == WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY) {
@@ -701,7 +712,7 @@ public class LivingEntityEventListeners {
             }
         }
 
-        if (livingEntity instanceof WraithonEntity) {
+        else if (livingEntity instanceof WraithonEntity) {
             if (livingEntity.level().isClientSide) {
                 WraithonMusicPlayer.stopBossMusic(livingEntity);
             }
@@ -942,19 +953,6 @@ public class LivingEntityEventListeners {
 
     public static Set<EntityType<?>> illegalEntityTypes = new HashSet<>();
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onMobSpawn(MobSpawnEvent.FinalizeSpawn event) {
-        if (event.getEntity() instanceof Pillager pillager && AquamiraeUtils.isInIceMaze(event.getEntity())) {
-            if (event.getEntity().getRandom().nextFloat() < 0.1) {
-                pillager.getPersistentData().putString("DeathLootTable", Aquamirae.MODID + ":entities/maze_captain");
-                pillager.setGlowingTag(true);
-            }
-            if (event.getEntity().getLootTable().toString().endsWith("captain")) {
-                event.getEntity().setGlowingTag(true);
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void onLivingJoin(EntityJoinLevelEvent event) {
 
@@ -1077,6 +1075,14 @@ public class LivingEntityEventListeners {
             }
         }
 
+        //海灵船长发光
+        if (event.getEntity() instanceof Pillager pillager) {
+            if (pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") || pillager.getPersistentData().getString("DeathLootTable").endsWith("captain") || pillager.getTags().contains(SoulEntity.TAG)) {
+                event.getEntity().setGlowingTag(true);
+                saveSpawnPos(pillager);
+            }
+        }
+
     }
 
     //处理游戏难度的怪物加强
@@ -1137,17 +1143,6 @@ public class LivingEntityEventListeners {
                 living.addTag("tcr-ng-mob");
             }
         }
-    }
-
-    @SubscribeEvent
-    public static void livingEquipmentChange(LivingEquipmentChangeEvent event) {
-//        if(event.getEntity() instanceof Player player) {
-//            if(player.level().dimension().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
-//                if(!EntityUtil.getNearByEntities(BaseBossEntity.class, player, 50).isEmpty()) {
-//
-//                }
-//            }
-//        }
     }
 
     @SubscribeEvent
