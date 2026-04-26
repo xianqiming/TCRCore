@@ -12,7 +12,6 @@ import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.registry.entry.EpicSkillsItems;
-import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -222,15 +221,25 @@ public class TCRPlayer {
     /**
      * 给ftb团队用的
      */
-    public void copyQuestsFrom(ServerPlayer serverPlayer) {
-        copyQuestsFrom(TCRCapabilityProvider.getTCRPlayer(serverPlayer));
+    public boolean copyQuestsFrom(ServerPlayer serverPlayer) {
+        return copyQuestsFrom(TCRCapabilityProvider.getTCRPlayer(serverPlayer));
     }
 
-    public void copyQuestsFrom(TCRPlayer old) {
+    /**
+     * @param old 被复制的
+     * @return 复制或被复制
+     */
+    public boolean copyQuestsFrom(TCRPlayer old) {
+        // 从完成的多的复制到完成得少的身上
+        if(old.finishedQuests.size() < this.finishedQuests.size()) {
+            old.copyQuestsFrom(this);
+            return false;
+        }
         this.resonanceStoneInCooldown = old.resonanceStoneInCooldown;
         this.resonanceStoneStartTime = old.resonanceStoneStartTime;
         this.currentQuests = old.currentQuests;
         this.finishedQuests = old.finishedQuests;
+        return true;
     }
 
     public void copyFrom(TCRPlayer old) {

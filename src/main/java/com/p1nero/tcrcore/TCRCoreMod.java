@@ -10,6 +10,8 @@ import com.p1nero.p1nero_ec.PEpicCataclysmMod;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
+import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
+import com.p1nero.tcrcore.capability.TCRPlayer;
 import com.p1nero.tcrcore.capability.TCRQuestManager;
 import com.p1nero.tcrcore.client.sound.TCRSounds;
 import com.p1nero.tcrcore.effect.TCREffects;
@@ -24,6 +26,7 @@ import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRStructures;
 import com.wintercogs.beyonddimensions.common.init.BDItems;
+import dev.ftb.mods.ftbteams.api.event.TeamEvent;
 import net.genzyuro.uniqueaccessories.registry.UAItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -144,6 +147,7 @@ public class TCRCoreMod {
             PEpicCataclysmMod.theIncineratorLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
                     TCRBossEntities.IGNIS_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.RED);
 
+            TeamEvent.PLAYER_CHANGED.register(PlayerEventListeners::onPlayerTeamChanged);
         });
     }
 

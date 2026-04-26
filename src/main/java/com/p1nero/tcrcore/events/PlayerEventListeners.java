@@ -21,12 +21,10 @@ import com.p1nero.tcrcore.entity.custom.fake_npc.fake_boss.FakeBossNpc;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolem;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
-import com.p1nero.tcrcore.network.packet.clientbound.CSTipPacket;
-import com.p1nero.tcrcore.network.packet.clientbound.OpenCustomDialogPacket;
-import com.p1nero.tcrcore.network.packet.clientbound.PlayItemPickupParticlePacket;
-import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
+import com.p1nero.tcrcore.network.packet.clientbound.*;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
@@ -40,6 +38,8 @@ import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
 import com.yesman.epicskills.skilltree.SkillTree;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.betterendisland.world.IDragonFight;
+import dev.ftb.mods.ftbteams.api.Team;
+import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -102,6 +102,40 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class PlayerEventListeners {
 
+    public static void onPlayerTeamChanged(PlayerChangedTeamEvent playerChangedTeamEvent) {
+        ServerPlayer serverPlayer = playerChangedTeamEvent.getPlayer();
+        if(serverPlayer == null) {
+            return;
+        }
+        syncQuestFromTeam(serverPlayer, playerChangedTeamEvent.getTeam());
+    }
+
+    /**
+     * 同步团队进度给新人，前提是默认团队所有人进度都一样= =
+     */
+    public static void syncQuestFromTeam(ServerPlayer serverPlayer, Team team) {
+        if(serverPlayer == null || team == null) {
+            return;
+        }
+        TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
+        if(!team.getOnlineMembers().isEmpty()) {
+            ServerPlayer oldPlayer = new ArrayList<>(team.getOnlineMembers()).get(0);
+            if(oldPlayer == serverPlayer) {
+                return;
+            }
+            ServerPlayer toBroadcast;
+            if(tcrPlayer.copyQuestsFrom(oldPlayer)) {
+                toBroadcast = serverPlayer;
+            } else {
+                toBroadcast = oldPlayer;
+            }
+            toBroadcast.displayClientMessage(TCRCoreMod.getInfo("team_progress_synced").withStyle(ChatFormatting.GOLD), false);
+            TCRQuestManager.ensureQuest(toBroadcast);
+            tcrPlayer.syncToClient(toBroadcast);
+            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
+        }
+    }
+
     @SubscribeEvent
     public static void onPlayerAdvancementEarn(AdvancementEvent.AdvancementEarnEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
@@ -142,7 +176,8 @@ public class PlayerEventListeners {
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
         if (player instanceof ServerPlayer serverPlayer) {
-            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+//            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);//syncQuestFromTeam已经同步玩家了，无需重复操作
+            syncQuestFromTeam(serverPlayer, FTBTeamUtils.getTeam(serverPlayer));
             TCRPlayer.updateSardineCount(serverPlayer);
             handleFirstJoin(serverPlayer, false);
         }

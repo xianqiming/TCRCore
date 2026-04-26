@@ -110,10 +110,12 @@ public class TCRQuestManager {
         //同步任务数据给队友
         Team team = FTBTeamUtils.getTeam(player);
         if(team != null) {
-            team.getOnlineMembers().forEach(serverPlayer -> {
-                if(serverPlayer != player) {
-                    TCRCapabilityProvider.getTCRPlayer(serverPlayer).copyQuestsFrom(tcrPlayer);
-                    ensureQuest(serverPlayer);
+            team.getOnlineMembers().forEach(teamPlayer -> {
+                if(teamPlayer != player) {
+                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyQuestsFrom(tcrPlayer) ? teamPlayer : player;
+                    ensureQuest(toBroadcast);
+                    tcrPlayer.syncToClient(toBroadcast);
+                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
                 }
             });
         }
@@ -161,10 +163,12 @@ public class TCRQuestManager {
         //同步任务数据给队友
         Team team = FTBTeamUtils.getTeam(player);
         if(team != null) {
-            team.getOnlineMembers().forEach(serverPlayer -> {
-                if(serverPlayer != player) {
-                    TCRCapabilityProvider.getTCRPlayer(serverPlayer).copyQuestsFrom(tcrPlayer);
-                    ensureQuest(serverPlayer);
+            team.getOnlineMembers().forEach(teamPlayer -> {
+                if(teamPlayer != player) {
+                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyQuestsFrom(tcrPlayer) ? teamPlayer : player;
+                    ensureQuest(toBroadcast);
+                    tcrPlayer.syncToClient(toBroadcast);
+                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
                 }
             });
         }

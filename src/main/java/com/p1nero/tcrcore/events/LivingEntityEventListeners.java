@@ -23,6 +23,7 @@ import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.The_Prowler_
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Wadjet_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.Bone_Chimera_Entity;
+import com.github.dodo.dodosmobs.init.ModEntities;
 import com.hm.efn.registries.EFNItem;
 import com.hm.efn.registries.EFNMobEffectRegistry;
 import com.obscuria.aquamirae.Aquamirae;
@@ -596,8 +597,9 @@ public class LivingEntityEventListeners {
                 if (WorldUtil.isInStructure(livingEntity, WorldUtil.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                     //偷懒，直接秽土转生
                     SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(boneChimeraEntity, 200, true);
-                    if (boneChimeraEntity.getTags().contains("tcr-has-spawn-pos") && soulEntity != null) {
-                        soulEntity.setPos(readSpawnPos(boneChimeraEntity).add(0, 2, 0));
+                    TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
+                    if (!patch.isEmpty() && patch.hasSpawnPos() && soulEntity != null) {
+                        soulEntity.setPos(patch.getSpawnPos().getCenter().add(0, 2, 0));
                         EntityUtil.nearPlayerDo(boneChimeraEntity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 10).withStyle(ChatFormatting.GOLD), false));
                     }
                     livingEntity.getPersistentData().putBoolean("already_respawn", true);
@@ -1001,7 +1003,14 @@ public class LivingEntityEventListeners {
 
         if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
             if (WorldUtil.isInStructure(boneChimeraEntity, WorldUtil.BONE_CHIMERA_STRUCTURE)) {
-                saveSpawnPos(boneChimeraEntity);
+                TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
+                if(patch.isEmpty()) {
+                    ModEntities.BONE_CHIMERA.get().spawn(serverLevel, boneChimeraEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
+                    boneChimeraEntity.discard();
+                    return;
+                } else if(!patch.hasSpawnPos()) {
+                    patch.setSpawnPos(boneChimeraEntity.getOnPos());
+                }
             }
         }
 

@@ -22,6 +22,7 @@ public class FTBTeamUtils {
         return (ServerPlayer) player.serverLevel().getPlayerByUUID(ownerId);
     }
 
+    @Nullable
     public static Team getTeam(ServerPlayer player) {
         return FTBTeamsAPI.api().getManager().getTeamForPlayer(player).orElse(null);
     }

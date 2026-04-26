@@ -1592,7 +1592,6 @@
 					Count: 1
 					id: "epicfight:skillbook"
 					tag: {
-						fdbosses: { }
 						skill: "efn:zansetsu"
 					}
 				}
@@ -1604,10 +1603,6 @@
 			y: -18.0d
 		}
 		{
-			dependencies: [
-				"4A769401A7590B3F"
-				"0D76D92CF8D39AE7"
-			]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1636,7 +1631,6 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["49526E12F56F14D0"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1665,10 +1659,6 @@
 			y: -11.0d
 		}
 		{
-			dependencies: [
-				"74F850F3C8C76ED4"
-				"40217A88C9D46BB1"
-			]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1717,7 +1707,6 @@
 							id: "efn:yamato_guard"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
@@ -1748,7 +1737,6 @@
 							id: "efn:yamato_doppelganger"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
@@ -1779,7 +1767,6 @@
 							id: "efn:yamato_summoned_sword"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
@@ -1810,7 +1797,6 @@
 							id: "efn:yamato_judgement_cut_end"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
@@ -1821,7 +1807,6 @@
 			y: -14.5d
 		}
 		{
-			dependencies: ["016F12E968740FBA"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1850,7 +1835,6 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["12C6899DBC971D90"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1879,7 +1863,6 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["72C5DAEE93ACFDD5"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1908,7 +1891,6 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["04A38D08B97A07B0"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1937,7 +1919,6 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["093CCFF3131C851E"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
