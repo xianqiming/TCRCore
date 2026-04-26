@@ -1097,6 +1097,11 @@ public class LivingEntityEventListeners {
             dragonBase.setPersistenceRequired();
         }
 
+        //回满血
+        if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
+            tutorialGolem.setHealth(tutorialGolem.getMaxHealth());
+        }
+
     }
 
     //处理游戏难度的怪物加强

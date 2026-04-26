@@ -1,24 +1,5 @@
 [
     {
-        "dimension": [
-            "tcrcore:sanctum"
-        ],
-        "mob": [
-            "tcrcore:custom_color_item",
-            "tcrcore:girl",
-            "tcrcore:guider",
-            "tcrcore:tutorial_golem"
-        ],
-        "result": "allow"
-    },
-    {
-        "dimension": [
-            "tcrcore:sanctum",
-            "tcrcore:real"
-        ],
-        "result": "deny"
-    },
-    {
         "spawner": true,
         "result": "allow"
     },
