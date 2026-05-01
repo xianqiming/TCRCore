@@ -468,8 +468,8 @@
 					type: "item"
 				}
 			]
-			x: 2.5d
-			y: -14.5d
+			x: 2.4285714285714164d
+			y: -15.613095238095234d
 		}
 		{
 			dependencies: ["3A35B2F3F4ED6EDC"]
@@ -1691,6 +1691,7 @@
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_guard.desc}"]
 			id: "3254967D776D648C"
 			rewards: [{
 				id: "5274468D1B56667C"
@@ -1716,11 +1717,12 @@
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest3254967D776D648C.title}"
-			x: -1.5d
-			y: -14.5d
+			x: 0.0d
+			y: -13.0d
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_doppelganger.desc}"]
 			id: "6533118C2C897C1E"
 			rewards: [{
 				id: "56ED6545CAF38BA6"
@@ -1746,11 +1748,12 @@
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest6533118C2C897C1E.title}"
-			x: 0.5d
-			y: -17.5d
+			x: -1.0d
+			y: -17.0d
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_summoned_sword.desc}"]
 			id: "4108291A69C3FFF6"
 			rewards: [{
 				id: "68A7E29FE488F6BA"
@@ -1776,11 +1779,12 @@
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest4108291A69C3FFF6.title}"
-			x: 4.5d
-			y: -17.5d
+			x: 6.0d
+			y: -17.0d
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_judgement_cut_end.desc}"]
 			id: "5DBFF2EAFF720ABF"
 			rewards: [{
 				id: "325D10F10ECBA98C"
@@ -1806,8 +1810,8 @@
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest5DBFF2EAFF720ABF.title}"
-			x: 6.5d
-			y: -14.5d
+			x: 4.428571428571431d
+			y: -12.898809523809518d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -2134,6 +2138,37 @@
 			}]
 			x: 9.0d
 			y: 3.0d
+		}
+		{
+			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_heavy_rain.desc}"]
+			id: "274826600E2C8D2E"
+			rewards: [{
+				id: "50ECE3170020B44F"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "none"
+			size: 2.0d
+			subtitle: "{ftbquests.chapter.wu_qi.quest6533118C2C897C1E.subtitle}"
+			tasks: [{
+				id: "1932E623FDA2916B"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "efn:yamato_heavy_rain"
+							lvl: 1s
+						}]
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			title: "{enchantment.efn.yamato_heavy_rain}"
+			x: 2.5d
+			y: -19.005952380952387d
 		}
 	]
 	title: "{ftbquests.chapter.wu_qi.title}"
