@@ -243,9 +243,6 @@ public class TCRPlayer {
         if(this == old) {
             return false;
         }
-        if(old.finishedQuests.size() == this.finishedQuests.size()) {
-            return true;
-        }
         // 从完成的多的复制到完成得少的身上
         if(old.finishedQuests.size() < this.finishedQuests.size()) {
             old.copyFrom(this);
@@ -502,46 +499,40 @@ public class TCRPlayer {
                 ItemStack item = blessItem == null ? serverPlayer.getMainHandItem() : blessItem.getDefaultInstance();
                 if (item.is(ModItems.STORM_EYE.get())  && !PlayerDataManager.stormEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.stormEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.ABYSS_EYE.get()) && !PlayerDataManager.abyssEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.abyssEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.DESERT_EYE.get()) && !PlayerDataManager.desertEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.desertEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.CURSED_EYE.get()) && !PlayerDataManager.cursedEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.cursedEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.FLAME_EYE.get()) && !PlayerDataManager.flameEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.flameEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.MONSTROUS_EYE.get()) && !PlayerDataManager.monstEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.monstEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.MECH_EYE.get()) && !PlayerDataManager.mechEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.mechEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.VOID_EYE.get()) && !PlayerDataManager.voidEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.voidEyeBlessed.put(serverPlayer, true);
                 }
                 if (oldAdder < healthAdder) {
                     updateHealth(serverPlayer, true, oldAdder);
                     FTBTeamUtils.syncDataToTeamMembers(serverPlayer);
+                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     FTBTeamUtils.onlineTeamMembersDo(serverPlayer, member -> {
-                        TCRCapabilityProvider.getTCRPlayer(member).updateHealth(member, true, oldAdder);
+                        TCRCapabilityProvider.getTCRPlayer(member).updateHealth(member, true, 0);
+                        ItemUtil.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     });
                     if(TCRQuestManager.hasQuest(serverPlayer, TCRQuests.BLESS_ON_THE_GODNESS_STATUE)){
                         TCRQuests.BLESS_ON_THE_GODNESS_STATUE.finish(serverPlayer, true);

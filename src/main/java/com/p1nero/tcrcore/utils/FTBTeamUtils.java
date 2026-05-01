@@ -36,13 +36,18 @@ public class FTBTeamUtils {
     public static Team getTeam(ServerPlayer player) {
         return FTBTeamsAPI.api().getManager().getTeamForPlayer(player).orElse(null);
     }
-
     public static void onlineTeamMembersDo(ServerPlayer player, Consumer<ServerPlayer> consumer) {
+        onlineTeamMembersDo(player, consumer, true);
+    }
+
+    public static void onlineTeamMembersDo(ServerPlayer player, Consumer<ServerPlayer> consumer, boolean ignoreSelf) {
+        consumer.accept(player);//防止没团队？虽然一个人默认就一个团队，但是以防万一
         FTBTeamsAPI.api().getManager().getTeamForPlayer(player).ifPresent(team -> {
             team.getOnlineMembers().forEach(member -> {
-                if(member != player) {
-                    consumer.accept(member);
+                if(member == player) {
+                    return;
                 }
+                consumer.accept(member);
             });
         });
     }

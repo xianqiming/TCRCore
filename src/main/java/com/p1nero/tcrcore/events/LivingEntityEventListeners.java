@@ -988,6 +988,10 @@ public class LivingEntityEventListeners {
         if(event.getEntity() instanceof BaseSmallBossEntity boss) {
             if(!boss.hasSpawnPos()) {
                 if(FMLEnvironment.production) {
+                    BlockPos pos = boss.getOnPos();
+                    while (!serverLevel.getBlockState(pos).isAir()) {
+                        pos = pos.above();
+                    }
                     boss.setSpawnPos(boss.getOnPos());
                 } else {
                     TCRCoreMod.LOGGER.info("开发环境，跳过设置[{}]的出生点", boss.getDisplayName().getString());
