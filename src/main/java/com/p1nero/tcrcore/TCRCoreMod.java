@@ -87,12 +87,12 @@ public class TCRCoreMod {
             epicParCoolLoaded = ModList.get().isLoaded("epicparcool");
             TCRPacketHandler.register();
             TCRQuestManager.init();
-        List<String> coolModList = List.of("apotheosis");
-        coolModList.forEach(s -> {
-            if(ModList.get().isLoaded(s)){
-                coolMod = true;
-            }
-        });
+            List<String> coolModList = List.of("apotheosis");
+            coolModList.forEach(s -> {
+                if (ModList.get().isLoaded(s)) {
+                    coolMod = true;
+                }
+            });
             PlayerEventListeners.illegalItems.add(UAItems.STARVED_WOLF_SKULL.get());
             PlayerEventListeners.illegalItems.add(artifacts.registry.ModItems.VAMPIRIC_GLOVE.get());
             PlayerEventListeners.illegalItems.add(UAItems.BURNING_SOUL.get());
@@ -100,9 +100,9 @@ public class TCRCoreMod {
             PlayerEventListeners.illegalItems.add(artifacts.registry.ModItems.SCARF_OF_INVISIBILITY.get());
             PlayerEventListeners.illegalItems.add(ModItems.CROSS_NECKLACE.get());//可能导致招架bug
             PlayerEventListeners.illegalItems.add(BDItems.NET_FEEDER_ITEM.get());
-            if(ModList.get().isLoaded("create")) {
+            if (ModList.get().isLoaded("create")) {
                 Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("create:crafting_blueprint"));
-                if(item != null) {
+                if (item != null) {
                     PlayerEventListeners.illegalItems.add(item);
                 }
             }
