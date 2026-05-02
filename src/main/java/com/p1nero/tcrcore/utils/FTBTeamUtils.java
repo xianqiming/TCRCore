@@ -36,6 +36,11 @@ public class FTBTeamUtils {
     public static Team getTeam(ServerPlayer player) {
         return FTBTeamsAPI.api().getManager().getTeamForPlayer(player).orElse(null);
     }
+
+    public static void onlineTeamMembersDoWithSelf(ServerPlayer player, Consumer<ServerPlayer> consumer) {
+        onlineTeamMembersDo(player, consumer, false);
+    }
+
     public static void onlineTeamMembersDo(ServerPlayer player, Consumer<ServerPlayer> consumer) {
         onlineTeamMembersDo(player, consumer, true);
     }

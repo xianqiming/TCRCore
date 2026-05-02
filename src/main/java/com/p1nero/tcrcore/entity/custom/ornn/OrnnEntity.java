@@ -1,6 +1,7 @@
 package com.p1nero.tcrcore.entity.custom.ornn;
 
 import com.asanginxst.epicfightx.registries.EFXItems;
+import com.github.alexthe668.domesticationinnovation.server.item.DIItemRegistry;
 import com.hm.efn.gameasset.EFNEnchantment;
 import com.hm.efn.gameasset.EFNSkills;
 import com.hm.efn.registries.EFNItem;
@@ -19,6 +20,7 @@ import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import net.minecraft.ChatFormatting;
@@ -186,22 +188,34 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         }
 
         if(i == 2) {
-            ItemUtil.addItemEntity(player, EpicFightItems.IRON_DAGGER.get().getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtil.addItemEntity(member, EpicFightItems.IRON_DAGGER.get().getDefaultInstance());
+            });
         }
         if(i == 3) {
-            ItemUtil.addItemEntity(player, Items.IRON_SWORD.getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtil.addItemEntity(member, Items.IRON_SWORD.getDefaultInstance());
+            });
         }
         if(i == 4) {
-            ItemUtil.addItemEntity(player, EpicFightItems.GOLDEN_LONGSWORD.get().getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtil.addItemEntity(member, EpicFightItems.GOLDEN_LONGSWORD.get().getDefaultInstance());
+            });
         }
         if(i == 5) {
-            ItemUtil.addItemEntity(player, EpicFightItems.GOLDEN_TACHI.get().getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtil.addItemEntity(member, EpicFightItems.GOLDEN_TACHI.get().getDefaultInstance());
+            });
         }
         if(i == 6) {
-            ItemUtil.addItemEntity(player, EpicFightItems.GOLDEN_SPEAR.get().getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtil.addItemEntity(member, EpicFightItems.GOLDEN_SPEAR.get().getDefaultInstance());
+            });
         }
         if(i == 7) {
-            ItemUtil.addItemEntity(player, EpicFightItems.WOODEN_GREATSWORD.get().getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtil.addItemEntity(member, EpicFightItems.WOODEN_GREATSWORD.get().getDefaultInstance());
+            });
         }
 
         //领了礼物才算结束
@@ -212,10 +226,12 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         //解锁百兵图
         if(i == 8) {
             TCRQuests.TALK_TO_ORNN_1.finish(player);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                TCRAdvancementData.finishAdvancement("unlock_weapon_armor_book", member);
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
+                member.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, member.getX(), member.getY(), member.getZ(), 1.0F, 1.0F, member.getRandom().nextInt()));
+            });
             ItemUtil.searchAndConsumeItem(player, TCRItems.MYSTERIOUS_WEAPONS.get(), 1);
-            TCRAdvancementData.finishAdvancement("unlock_weapon_armor_book", player);
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), player);
-            player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
         }
 
         if(i == 9) {
