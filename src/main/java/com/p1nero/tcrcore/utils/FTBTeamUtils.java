@@ -48,7 +48,7 @@ public class FTBTeamUtils {
         if(!ignoreSelf) {
             consumer.accept(player);//防止没团队？虽然一个人默认就一个团队，但是以防万一
         }
-        FTBTeamsAPI.api().getManager().getTeamForPlayer(player).filter(Team::isPlayerTeam).ifPresent(team -> {
+        FTBTeamsAPI.api().getManager().getTeamForPlayer(player).filter(Team::isPartyTeam).ifPresent(team -> {
             team.getOnlineMembers().forEach(member -> {
                 if(member == player) {
                     return;
