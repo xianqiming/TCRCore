@@ -298,7 +298,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             DialogNode next = new DialogNode(dBuilder.ans(44), dBuilder.opt(-1))
                     .addChild(new DialogNode(dBuilder.ans(45), dBuilder.opt(-1))
                             .addChild(new DialogNode(dBuilder.ans(46), dBuilder.opt(-1))
-                                    .addChild(new DialogNode(dBuilder.ans(47, Component.translatable("structure.integrated_stronghold.stronghold")), dBuilder.opt(-1))
+                                    .addChild(new DialogNode(dBuilder.ans(47, WorldUtil.getStructureName(WorldUtil.STRONG_HOLD)), dBuilder.opt(-1))
                                             .addLeaf(dBuilder.opt(-2), 13))));
 
             chronos.addChild(next);

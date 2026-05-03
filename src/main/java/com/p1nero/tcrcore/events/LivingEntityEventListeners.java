@@ -695,7 +695,7 @@ public class LivingEntityEventListeners {
                     if(entity instanceof DragonBase ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
                         ServerLevel toRespawnLevel = serverLevel.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
                         if(toRespawnLevel != null) {
-                            entity.changeDimension(toRespawnLevel, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
+                            entity.teleportTo(toRespawnLevel, WorldUtil.START_POS.getX(), WorldUtil.START_POS.getY(), WorldUtil.START_POS.getZ(), Set.of(), 0, 0);
                             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("pet_respawn", ownableEntity.getDisplayName()).withStyle(ChatFormatting.GOLD), false);
                         }
                     }
