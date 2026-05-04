@@ -8,7 +8,7 @@
 	betterAIOn = true
 	#Maximum number of mobs that can simultaneously attack a player.
 	#Range: 1 ~ 39
-	battleLimit = 3
+	battleLimit = 1
 	#Distance (in blocks) within which mobs consider players as candidates.
 	#Range: 8.0 ~ 128.0
 	trackingRange = 32.0

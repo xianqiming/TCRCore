@@ -961,6 +961,8 @@ public class LivingEntityEventListeners {
 
         ServerLevel serverLevel = (ServerLevel) event.getEntity().level();
 
+        UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");
+
         if(event.getEntity() instanceof LivingEntity living && !(living instanceof Player)) {
             //处理多周目
             if(serverLevel.getServer().isSingleplayer() && TCRPlayer.SARDINE_COUNT > 0) {
@@ -973,8 +975,13 @@ public class LivingEntityEventListeners {
             }
         }
 
+        else if(event.getEntity() instanceof Skeleton skeleton) {
+            skeleton.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+            skeleton.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+        }
+
         //灾变人形送个重置石
-        if (event.getEntity() instanceof BaseBossEntity baseBossEntity && serverLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY && !baseBossEntity.getPersistentData().getBoolean("retracement_stone_given")) {
+        else if (event.getEntity() instanceof BaseBossEntity baseBossEntity && serverLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY && !baseBossEntity.getPersistentData().getBoolean("retracement_stone_given")) {
             serverLevel.players().forEach(serverPlayer -> {
                 ItemUtils.addItemEntity(serverPlayer, TCRItems.RETRACEMENT_STONE.get().getDefaultInstance());
                 baseBossEntity.getPersistentData().putBoolean("retracement_stone_given", true);
@@ -982,7 +989,7 @@ public class LivingEntityEventListeners {
         }
 
         //设置出生点方便复活
-        if(event.getEntity() instanceof BaseSmallBossEntity boss) {
+        else if(event.getEntity() instanceof BaseSmallBossEntity boss) {
             if(!boss.hasSpawnPos()) {
                 if(FMLEnvironment.production) {
                     BlockPos pos = boss.getOnPos();
@@ -1002,7 +1009,7 @@ public class LivingEntityEventListeners {
             }
         }
 
-        if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
+        else if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
             if (WorldUtils.isInStructure(boneChimeraEntity, WorldUtils.BONE_CHIMERA_STRUCTURE)) {
                 TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
                 if(patch.isEmpty()) {
@@ -1015,14 +1022,14 @@ public class LivingEntityEventListeners {
             }
         }
 
-        if (event.getEntity() instanceof Drowned drowned) {
+        else if (event.getEntity() instanceof Drowned drowned) {
             if (WorldUtils.isInStructure(drowned, WorldUtils.OCEAN_GOLEM)) {
                 drowned.getPersistentData().putBoolean("spawn_in_ocean_tower", true);
             }
         }
 
         //替换苦力怕，宝箱怪太粪了
-        if(event.getEntity() instanceof Mimic mimic) {
+        else if(event.getEntity() instanceof Mimic mimic) {
             event.setCanceled(true);
             Creeper creeper = EntityType.CREEPER.spawn(serverLevel, mimic.getOnPos().above(), MobSpawnType.MOB_SUMMONED);
             if(creeper != null) {
@@ -1030,31 +1037,22 @@ public class LivingEntityEventListeners {
             }
         }
 
-        //凋零提示
-        if(event.getEntity() instanceof WitherBoss witherBoss) {
-            EntityUtils.nearPlayerDo(witherBoss, 32, player -> {
-                player.displayClientMessage(TCRCoreMod.getInfo("wither_parry_tip", witherBoss.getDisplayName()).withStyle(ChatFormatting.GOLD), true);
-                player.displayClientMessage(TCRCoreMod.getInfo("wither_parry_tip", witherBoss.getDisplayName()).withStyle(ChatFormatting.GOLD), false);
-            });
-        }
-
         //防止玄武岩卡
-        if(event.getEntity() instanceof NetherGolem netherGolem) {
+        else if(event.getEntity() instanceof NetherGolem netherGolem) {
             EntityUtils.destroyNearby(netherGolem, 5, true);
         }
 
-        if (illegalEntityTypes.contains(event.getEntity().getType())) {
+        else if (illegalEntityTypes.contains(event.getEntity().getType())) {
             event.setCanceled(true);
             return;
         }
 
         //移除远古守卫者在海洋塔的生成
-        if (event.getEntity() instanceof Guardian guardian && WorldUtils.isInStructure(guardian, WorldUtils.OCEAN_GOLEM)) {
+        else if (event.getEntity() instanceof Guardian guardian && WorldUtils.isInStructure(guardian, WorldUtils.OCEAN_GOLEM)) {
             event.setCanceled(true);
         }
 
-        UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");
-        if (event.getEntity() instanceof IronGolem ironGolem) {
+        else if (event.getEntity() instanceof IronGolem ironGolem) {
             if (WorldUtils.isInStructure(ironGolem, WorldUtils.SKY_GOLEM)) {
                 ironGolem.setCustomName(TCRCoreMod.getInfo("iron_golem_name"));
                 ironGolem.setCustomNameVisible(true);
@@ -1063,7 +1061,7 @@ public class LivingEntityEventListeners {
         }
 
         //末影龙血少，走个过场，似了以后换末地傀儡
-        if (event.getEntity() instanceof EnderDragon enderDragon) {
+        else if (event.getEntity() instanceof EnderDragon enderDragon) {
             enderDragon.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);
             AttributeModifier healthBoost = new AttributeModifier(uuid, "Dragon Health Boost", -0.6, AttributeModifier.Operation.MULTIPLY_BASE);
             enderDragon.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
@@ -1071,22 +1069,22 @@ public class LivingEntityEventListeners {
         }
 
         //血给多点，假装很强大
-        if (event.getEntity() instanceof WitherBoss witherBoss) {
+        else if (event.getEntity() instanceof WitherBoss witherBoss) {
+
+            //凋零提示
+            EntityUtils.nearPlayerDo(witherBoss, 32, player -> {
+                player.displayClientMessage(TCRCoreMod.getInfo("wither_parry_tip", witherBoss.getDisplayName()).withStyle(ChatFormatting.GOLD), true);
+                player.displayClientMessage(TCRCoreMod.getInfo("wither_parry_tip", witherBoss.getDisplayName()).withStyle(ChatFormatting.GOLD), false);
+            });
+
             witherBoss.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);
             AttributeModifier healthBoost = new AttributeModifier(uuid, "Wither Health Boost", 1, AttributeModifier.Operation.MULTIPLY_BASE);
             witherBoss.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
             witherBoss.setHealth(witherBoss.getMaxHealth());
         }
 
-        //保护措施
-//        if (event.getEntity() instanceof WraithonEntity wraithonEntity) {
-//            if (!serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), LivingEntity::isAlive).isEmpty()) {
-//                wraithonEntity.discard();
-//            }
-//        }
-
         //海灵船长发光
-        if (event.getEntity() instanceof Pillager pillager) {
+        else if (event.getEntity() instanceof Pillager pillager) {
             if (pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") || pillager.getPersistentData().getString("DeathLootTable").endsWith("captain") || pillager.getTags().contains(SoulEntity.TAG)) {
                 event.getEntity().setGlowingTag(true);
                 saveSpawnPos(pillager);
@@ -1094,12 +1092,12 @@ public class LivingEntityEventListeners {
         }
 
         //防止龙跑远了移除
-        if(event.getEntity() instanceof DragonBase dragonBase) {
+        else if(event.getEntity() instanceof DragonBase dragonBase) {
             dragonBase.setPersistenceRequired();
         }
 
         //回满血
-        if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
+        else if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
             tutorialGolem.setHealth(tutorialGolem.getMaxHealth());
         }
 
