@@ -1,5 +1,5 @@
 #Whether to replace lightining renderer with Effekseer effect
-enable_lightning = true
+enable_lightning = false
 #Whether to replace explosion particles with Effekseer effect
 enable_explosion = false
 #Whether to play a beam on item entities

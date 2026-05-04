@@ -671,8 +671,13 @@ public class LivingEntityEventListeners {
                     if (!(entity instanceof OwnableEntity) && entity instanceof LivingEntity living && !(entity instanceof Player)) {
                         //防堆命机制
                         living.setHealth(living.getMaxHealth());
-                        if(living instanceof BaseBossEntity) {
-                            living.removeAllEffects();//打模仿者时存在异步bug
+                        if(living instanceof BaseBossEntity baseBossEntity && baseBossEntity.level().dimension().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
+                            //由于未知bug太多，我决定直接让它重生
+                            SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(baseBossEntity, 40, true);
+                            if(soulEntity != null) {
+                                soulEntity.setPos(0, 5, 0);
+                            }
+                            baseBossEntity.discard();
                         }
                         if (living instanceof Bone_Chimera_Entity boneChimeraEntity) {
                             boneChimeraEntity.setStanding(false);//重置阶段
@@ -963,6 +968,17 @@ public class LivingEntityEventListeners {
 
         UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");
 
+        //非法实体先杀了
+        if (illegalEntityTypes.contains(event.getEntity().getType())) {
+            event.setCanceled(true);
+            return;
+        }
+
+        if(!(event.getEntity() instanceof LivingEntity)) {
+            return;
+        }
+
+        //全局的设置
         if(event.getEntity() instanceof LivingEntity living && !(living instanceof Player)) {
             //处理多周目
             if(serverLevel.getServer().isSingleplayer() && TCRPlayer.SARDINE_COUNT > 0) {
@@ -975,21 +991,27 @@ public class LivingEntityEventListeners {
             }
         }
 
-        else if(event.getEntity() instanceof Skeleton skeleton) {
-            skeleton.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
-            skeleton.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
-        }
-
         //灾变人形送个重置石
-        else if (event.getEntity() instanceof BaseBossEntity baseBossEntity && serverLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY && !baseBossEntity.getPersistentData().getBoolean("retracement_stone_given")) {
-            serverLevel.players().forEach(serverPlayer -> {
-                ItemUtils.addItemEntity(serverPlayer, TCRItems.RETRACEMENT_STONE.get().getDefaultInstance());
-                baseBossEntity.getPersistentData().putBoolean("retracement_stone_given", true);
-            });
+        if (event.getEntity() instanceof BaseBossEntity baseBossEntity && serverLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) {
+            if(event.loadedFromDisk()) {
+                //由于未知bug太多，我决定直接让它重生
+                SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(baseBossEntity, 10, true);
+                if(soulEntity != null) {
+                    soulEntity.setPos(0, 5, 0);
+                }
+                event.setCanceled(true);
+                return;
+            }
+            if(!baseBossEntity.getTags().contains(SoulEntity.TAG) && !baseBossEntity.getPersistentData().getBoolean("retracement_stone_given")) {
+                serverLevel.players().forEach(serverPlayer -> {
+                    ItemUtils.addItemEntity(serverPlayer, TCRItems.RETRACEMENT_STONE.get().getDefaultInstance());
+                    baseBossEntity.getPersistentData().putBoolean("retracement_stone_given", true);
+                });
+            }
         }
 
         //设置出生点方便复活
-        else if(event.getEntity() instanceof BaseSmallBossEntity boss) {
+        if(event.getEntity() instanceof BaseSmallBossEntity boss) {
             if(!boss.hasSpawnPos()) {
                 if(FMLEnvironment.production) {
                     BlockPos pos = boss.getOnPos();
@@ -1009,7 +1031,8 @@ public class LivingEntityEventListeners {
             }
         }
 
-        else if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
+        //奇美拉设重生点
+        if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
             if (WorldUtils.isInStructure(boneChimeraEntity, WorldUtils.BONE_CHIMERA_STRUCTURE)) {
                 TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
                 if(patch.isEmpty()) {
@@ -1022,14 +1045,15 @@ public class LivingEntityEventListeners {
             }
         }
 
-        else if (event.getEntity() instanceof Drowned drowned) {
+        //海洋塔溺尸取消游泳
+        if (event.getEntity() instanceof Drowned drowned) {
             if (WorldUtils.isInStructure(drowned, WorldUtils.OCEAN_GOLEM)) {
                 drowned.getPersistentData().putBoolean("spawn_in_ocean_tower", true);
             }
         }
 
         //替换苦力怕，宝箱怪太粪了
-        else if(event.getEntity() instanceof Mimic mimic) {
+        if(event.getEntity() instanceof Mimic mimic) {
             event.setCanceled(true);
             Creeper creeper = EntityType.CREEPER.spawn(serverLevel, mimic.getOnPos().above(), MobSpawnType.MOB_SUMMONED);
             if(creeper != null) {
@@ -1038,21 +1062,16 @@ public class LivingEntityEventListeners {
         }
 
         //防止玄武岩卡
-        else if(event.getEntity() instanceof NetherGolem netherGolem) {
+        if(event.getEntity() instanceof NetherGolem netherGolem) {
             EntityUtils.destroyNearby(netherGolem, 5, true);
         }
 
-        else if (illegalEntityTypes.contains(event.getEntity().getType())) {
-            event.setCanceled(true);
-            return;
-        }
-
         //移除远古守卫者在海洋塔的生成
-        else if (event.getEntity() instanceof Guardian guardian && WorldUtils.isInStructure(guardian, WorldUtils.OCEAN_GOLEM)) {
+        if (event.getEntity() instanceof Guardian guardian && WorldUtils.isInStructure(guardian, WorldUtils.OCEAN_GOLEM)) {
             event.setCanceled(true);
         }
 
-        else if (event.getEntity() instanceof IronGolem ironGolem) {
+        if (event.getEntity() instanceof IronGolem ironGolem) {
             if (WorldUtils.isInStructure(ironGolem, WorldUtils.SKY_GOLEM)) {
                 ironGolem.setCustomName(TCRCoreMod.getInfo("iron_golem_name"));
                 ironGolem.setCustomNameVisible(true);
@@ -1061,7 +1080,7 @@ public class LivingEntityEventListeners {
         }
 
         //末影龙血少，走个过场，似了以后换末地傀儡
-        else if (event.getEntity() instanceof EnderDragon enderDragon) {
+        if (event.getEntity() instanceof EnderDragon enderDragon) {
             enderDragon.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);
             AttributeModifier healthBoost = new AttributeModifier(uuid, "Dragon Health Boost", -0.6, AttributeModifier.Operation.MULTIPLY_BASE);
             enderDragon.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
@@ -1069,7 +1088,7 @@ public class LivingEntityEventListeners {
         }
 
         //血给多点，假装很强大
-        else if (event.getEntity() instanceof WitherBoss witherBoss) {
+        if (event.getEntity() instanceof WitherBoss witherBoss) {
 
             //凋零提示
             EntityUtils.nearPlayerDo(witherBoss, 32, player -> {
@@ -1084,7 +1103,7 @@ public class LivingEntityEventListeners {
         }
 
         //海灵船长发光
-        else if (event.getEntity() instanceof Pillager pillager) {
+        if (event.getEntity() instanceof Pillager pillager) {
             if (pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") || pillager.getPersistentData().getString("DeathLootTable").endsWith("captain") || pillager.getTags().contains(SoulEntity.TAG)) {
                 event.getEntity().setGlowingTag(true);
                 saveSpawnPos(pillager);
@@ -1092,12 +1111,12 @@ public class LivingEntityEventListeners {
         }
 
         //防止龙跑远了移除
-        else if(event.getEntity() instanceof DragonBase dragonBase) {
+        if(event.getEntity() instanceof DragonBase dragonBase) {
             dragonBase.setPersistenceRequired();
         }
 
         //回满血
-        else if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
+        if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
             tutorialGolem.setHealth(tutorialGolem.getMaxHealth());
         }
 

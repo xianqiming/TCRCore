@@ -39,9 +39,13 @@
               }
             ],
     "stun_command_list":[ 										
-		{"command":"execute as @e[type=skeleton,distance=0..7,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run item replace entity @s weapon.mainhand with air", "stun_type": "short", "execute_at_target":false},
-		{"command":"execute as @e[type=skeleton,distance=0..7,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run item replace entity @s weapon.offhand with air", "stun_type": "short", "execute_at_target":false},
-		{"command":"execute as @e[type=skeleton,distance=0..7,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run indestructible @s set_phase 0", "stun_type": "short", "execute_at_target":false}
+		{"command":"scoreboard objectives add 001 dummy", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[sort=furthest,limit=1,type=skeleton,distance=10..32,nbt=!{HandItems:[{id:\"minecraft:bow\"}]}] run execute unless score @s 001 matches 1 run indestructible @s set_phase 3", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[sort=furthest,limit=1,type=skeleton,distance=10..32,nbt=!{HandItems:[{id:\"minecraft:bow\"}]}] run execute unless score @s 001 matches 1 run scoreboard players set @e 001 1", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[sort=nearest,type=skeleton,distance=0..32,nbt=!{HandItems:[{id:\"minecraft:bow\"}]}] run execute unless score @s 001 matches 1 run scoreboard players set @e 001 2", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[type=skeleton,distance=0..3,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run item replace entity @s weapon.mainhand with air", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[type=skeleton,distance=0..3,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run item replace entity @s weapon.offhand with air", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[type=skeleton,distance=0..3,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run indestructible @s set_phase 0", "stun_type": "short", "execute_at_target":false}
           ],
 	"custom_guard_motion": [   
 		{ 
@@ -138,14 +142,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -687,6 +688,24 @@
                     ]                 
 				},
 				{
+					"weight": 100,
+					"behaviors": [					
+						{
+							"conditions": [
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
+						}
+                    ]                 
+				},
+				{
 					"weight": 1.5,
 					"canBeInterrupted": false,
 					"looping": false,
@@ -1212,14 +1231,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								   {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -1761,14 +1777,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -2310,14 +2323,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -2864,14 +2874,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -3401,14 +3408,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								  {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -3979,14 +3983,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -4815,14 +4816,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								    {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
@@ -5369,14 +5367,11 @@
                     ]                 
 				},
 				{
-					"weight": 1.5,
-					"canBeInterrupted": true,
-					"looping": false,
-					"cooldown":50,
+					"weight": 100,
 					"behaviors": [					
 						{
 							"conditions": [
-								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+								  {"predicate":"indestructible:phase", "min": 3, "max": 3},{"predicate":"epicfight:within_distance", "min": 0.0, "max": 32.0}
 							],
 							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
 							"convert_time": 0.1,			
