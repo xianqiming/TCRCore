@@ -91,6 +91,8 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addBiome(TCRBiomes.AIR, "");
         this.addBiome(TCRBiomes.REAL, "");
 
+        this.addQuest(TCRQuests.TALK_TO_BOUNTIFUL_VILLAGER, "冒险家之章", "寻找[冒险家协会]","我们终于来到了[%s]！村庄中心似乎分布着几个独特的建筑，快去看看吧！说不定我们可以在那边接到不错的委托！");
+
         this.addQuest(TCRQuests.KILL_DESERT_EYE, "幻境之章", "击败[%s]", "借助[%s]的力量，我们开启了一个新的幻境。击败幻境首领[%s]，获取强力的材料吧！\n\n§a[提示]：§r击败小头目以获得[%s]，以在金字塔迷宫最深处唤醒[%s]，不断向下前进吧！");
         this.addQuest(TCRQuests.KILL_MECH_EYE, "幻境之章", "击败[%s]", "借助[%s]的力量，我们开启了一个新的幻境。击败幻境首领[%s]，获取强力的材料吧！\n\n§a[提示]：§r使用[%s]以唤醒沉睡在工厂深处的[%s]");
         this.addQuest(TCRQuests.KILL_MONST_EYE, "幻境之章", "击败[%s]", "借助[%s]的力量，我们开启了一个新的幻境。击败幻境首领[%s]，获取强力的材料吧！");

@@ -274,6 +274,7 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
                 if (currentQuest.equals(TCRQuests.TALK_TO_FERRY_GIRL_0)) {
                     TCRQuests.TALK_TO_FERRY_GIRL_0.finish(serverPlayer);//先清理任务标记点，再传去主世界
                     TCRQuests.USE_LAND_RESONANCE_STONE.start(serverPlayer);
+                    TCRQuests.TALK_TO_BOUNTIFUL_VILLAGER.start(serverPlayer);
                 }
                 //传送主世界
                 ServerLevel level = serverPlayer.server.getLevel(Level.OVERWORLD);

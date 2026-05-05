@@ -91,6 +91,8 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addBiome(TCRBiomes.AIR, "");
         this.addBiome(TCRBiomes.REAL, "");
 
+        this.addQuest(TCRQuests.TALK_TO_BOUNTIFUL_VILLAGER, "Adventurer's Chapter", "Search for the [Adventurer's Guild]", "We have finally arrived at [%s]! Several unique buildings seem to be scattered around the village center. Let's go take a look! Perhaps we can pick up some decent commissions there!");
+
         this.addQuest(TCRQuests.KILL_DESERT_EYE, "Cloudland Chapter", "Defeat [%s]", "With the power of [%s], we have opened a new cloudland. Defeat the cloudland boss [%s] to obtain powerful materials!\n\n§a[Hint]:§r Defeat mini-bosses to obtain [%s] and use them to awaken [%s] in the deepest part of the pyramid maze. Keep moving downward!");
         this.addQuest(TCRQuests.KILL_MECH_EYE, "Cloudland Chapter", "Defeat [%s]", "With the power of [%s], we have opened a new cloudland. Defeat the cloudland boss [%s] to obtain powerful materials!\n\n§a[Hint]:§r Use [%s] to awaken [%s] sleeping deep in the factory.");
         this.addQuest(TCRQuests.KILL_MONST_EYE, "Cloudland Chapter", "Defeat [%s]", "With the power of [%s], we have opened a new cloudland. Defeat the cloudland boss [%s] to obtain powerful materials!");

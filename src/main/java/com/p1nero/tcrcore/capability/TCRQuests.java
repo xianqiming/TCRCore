@@ -151,6 +151,9 @@ public class TCRQuests {
     //后日谈
     public static Quest TALK_TO_AINE_GAME_CLEAR;
 
+    //前往冒险家协会
+    public static Quest TALK_TO_BOUNTIFUL_VILLAGER;
+
     public static void init() {
 
         WAIT_RESONANCE_STONE_CHARGE = TCRQuestManager.create("wait_resonance_stone_charge")
@@ -645,5 +648,8 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
+        TALK_TO_BOUNTIFUL_VILLAGER = TCRQuestManager.create("talk_to_bountiful_villager")
+                .descParam(WorldUtils.OVERWORLD_NAME)
+                .withIcon(SIDE_QUEST_1);
     }
 }
