@@ -60,6 +60,7 @@
     "ba_bt.LandTowerMixin",
     "ba_bt.LandTowerStructureMixin",
     "ba_bt.OceanTowerMixin",
+    "bountiful_npc.DialogExtensionMixin",
     "cataclysm.CuriosItemMixin",
     "dodosmob.Bone_ChimeraMixin",
     "domesticationinnovation.CommonProxyMixin",

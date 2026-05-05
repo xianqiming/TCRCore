@@ -8,7 +8,6 @@ import com.hm.efn.EFN;
 import com.hm.efn.gameasset.EFNSkills;
 import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
-import com.p1nero.bountiful_npc.villager.BountifulVillagers;
 import com.p1nero.cataclysm_dimension.CataclysmDimensionMod;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.dpr.gameassets.DPRSkills;
@@ -62,7 +61,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -238,13 +236,6 @@ public class PlayerEventListeners {
 
             EpicFightNetworkManager.sendToPlayer(skillContainer.createSyncPacketToLocalPlayer(), player);
             EpicFightNetworkManager.sendToAllPlayerTrackingThisEntity(skillContainer.createSyncPacketToRemotePlayer(), player);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onPlayerInteractEntity(PlayerInteractEvent.EntityInteract event) {
-        if(event.getEntity() instanceof ServerPlayer serverPlayer && event.getTarget() instanceof Villager villager && BountifulVillagers.RECEPTIONIST.get().equals(villager.getVillagerData().getProfession())) {
-            TCRQuests.TALK_TO_BOUNTIFUL_VILLAGER.finish(serverPlayer);
         }
     }
 
