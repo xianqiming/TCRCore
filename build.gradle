@@ -355,6 +355,7 @@ dependencies {
     implementation fg.deobf("libs:supplementaries:3.1.41")
     implementation fg.deobf("curse.maven:quark-243121:6427817")
     implementation fg.deobf("curse.maven:zeta-968868:6432578")
+    implementation fg.deobf("curse.maven:yungs-better-ocean-monuments-689238:4883003")
 
     implementation fg.deobf("libs:lukis-grand-capitals:1.1.2")
 //    implementation fg.deobf("libs:trek:B0.5") //内置为数据包，curse forge用数据包形式下载
