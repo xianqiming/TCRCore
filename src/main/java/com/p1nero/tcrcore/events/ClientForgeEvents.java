@@ -2,7 +2,6 @@ package com.p1nero.tcrcore.events;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.obscuria.obscureapi.api.BossBarsRenderManager;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.dialog_lib.events.ClientNpcEntityDialogueEvent;
 import com.p1nero.tcrcore.TCRCoreMod;
@@ -54,30 +53,6 @@ public class ClientForgeEvents {
             }
         }
 
-    }
-
-    /**
-     * FIXME 官方要改的话记得删
-     */
-    @SubscribeEvent
-    public static void onRenderBossBar(CustomizeGuiOverlayEvent.BossEventProgress event){
-        Optional<BossBarsRenderManager.Style> style = BossBarsRenderManager.getStyle(event.getBossEvent().getName());
-        if (style.isPresent()) {
-            Component component = event.getBossEvent().getName();
-            if (style.get().shouldRenderBar()) {
-                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                RenderSystem.setShaderTexture(0, GUI_BARS_LOCATION);
-            }
-            Minecraft minecraft = Minecraft.getInstance();
-            style.get().getFunction().render(minecraft, event.getGuiGraphics(), event.getX(), event.getY(), event.getBossEvent(), component);
-            if (style.get().shouldRenderName()) {
-                int x = event.getWindow().getGuiScaledWidth() / 2 - minecraft.font.width(component) / 2;
-                int y = event.getY() - 9;
-                event.getGuiGraphics().drawString(minecraft.font, component, x, y, 16777215);
-            }
-
-            event.setIncrement(style.get().getIncrement(minecraft));
-        }
     }
 
     @SubscribeEvent

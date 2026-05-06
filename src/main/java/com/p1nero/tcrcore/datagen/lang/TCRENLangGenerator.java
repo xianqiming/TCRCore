@@ -603,9 +603,9 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCREntities.AINE.get(), 7, "§aAbout [%s§a]");
         this.addDialogAnswer(TCREntities.AINE.get(), 9, "This is... special memory essence. It seems to record the memories of a group, not just a single life. Let's see what secrets it holds!");
         this.addDialogAnswer(TCREntities.AINE.get(), 10, "!!");
-        this.addDialogAnswer(TCREntities.AINE.get(), 11, "It records the adventure story of Captain Cornelia. And from the memory, after the Soul Angel %s was eroded by the Black Tide, they possessed Captain Cornelia! Hurry and show this deciphered memory to %s!");
+        this.addDialogAnswer(TCREntities.AINE.get(), 111, "This is the helmet of the warrior [%s] under the command of the Soul Angel. And from the memory, after Soul Angel %s was eroded by the Black Tide, it possessed [%s]! Let's show this interpreted memory to %s!");
         this.addDialogOption(TCREntities.AINE.get(), 8, "%s? %s?");
-        this.addDialogAnswer(TCREntities.AINE.get(), 12, "The Soul Angel, %s, governs the world of the dead. Captain Cornelia's fleet was a world-renowned ocean-going fleet. Cursed by the Black Tide, they were trapped forever in that icy labyrinth along with [%s]!");
+        this.addDialogAnswer(TCREntities.AINE.get(), 112, "Soul Angel, %s, rules the world of the dead. [%s] is the bravest warrior under its command. Cursed by the Black Tide, they are forever trapped together with [%s] in [%s] !");
         this.addDialogAnswer(TCREntities.AINE.get(), 13, "[%s]? Let me see, another special memory...");
         this.addDialogAnswer(TCREntities.AINE.get(), 14, "Heh heh, it seems the Soul Angel, who governs the underworld, also mastered the magic of the living!");
         this.addDialogAnswer(TCREntities.AINE.get(), 15, "[%s] gives us two pieces of information. §6First, it depicts most of the monsters in the world eroded by the Black Tide!");

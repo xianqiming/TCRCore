@@ -89,15 +89,15 @@ public class TCRItems {
     );
 
     public static final RegistryObject<Item> CURSED_RESONANCE_STONE = REGISTRY.register("cursed_resonance_stone",
-            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.AQUAMIRAE_SHIP_STRUCTURE), 63, Level.OVERWORLD, (serverPlayer) ->
+            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.OCEAN_MONUMENT), 63, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_CURSED_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) ->
                     {
                         if (TCRCoreMod.isXaeroMapLoaded()) {
-                            XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), Component.translatable("structure.aquamirae.ice_maze")), pos, WaypointColor.DARK_GREEN);
+                            XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), WorldUtils.getStructureName(WorldUtils.OCEAN_MONUMENT)), pos, WaypointColor.DARK_GREEN);
                         }
                         if (TCRCoreMod.isJourneyMapLoaded()) {
-                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), Component.translatable("structure.aquamirae.ice_maze")), pos, ChatFormatting.DARK_GREEN);
+                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), WorldUtils.getStructureName(WorldUtils.OCEAN_MONUMENT)), pos, ChatFormatting.DARK_GREEN);
                         }
                         TCRQuests.USE_CURSED_RESONANCE_STONE.finish(serverPlayer, true);
                         TCRQuests.GET_CURSED_EYE.start(serverPlayer);

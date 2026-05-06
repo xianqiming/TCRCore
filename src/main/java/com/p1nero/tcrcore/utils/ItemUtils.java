@@ -46,7 +46,7 @@ public class ItemUtils {
                 ModItems.CHITIN_CLAW.get(),
                 ModItems.CORAL_CHUNK.get(),
                 Items.DRAGON_EGG,
-                EFNItem.DEEPDARK_HEART.get(),
+//                EFNItem.DEEPDARK_HEART.get(),
                 EpicSkillsItems.ABILIITY_STONE.get()
         ));
         eyesItems.addAll(List.of(ModItems.MONSTROUS_EYE.get(), ModItems.VOID_EYE.get(), ModItems.MECH_EYE.get(), ModItems.ABYSS_EYE.get(), ModItems.STORM_EYE.get(), ModItems.CURSED_EYE.get(), ModItems.FLAME_EYE.get(), ModItems.DESERT_EYE.get()));

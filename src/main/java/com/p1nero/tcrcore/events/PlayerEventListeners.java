@@ -6,7 +6,6 @@ import com.brass_amber.ba_bt.init.BTEntityType;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.EFN;
 import com.hm.efn.gameasset.EFNSkills;
-import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.cataclysm_dimension.CataclysmDimensionMod;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
@@ -690,6 +689,7 @@ public class PlayerEventListeners {
             if (illegalItems.contains(event.getContainer().getItems().get(i).getItem())) {
                 event.getContainer().getItems().get(i).setCount(0);
             }
+
         }
     }
 
@@ -799,10 +799,6 @@ public class PlayerEventListeners {
                     TCRQuests.BLESS_ON_THE_GODNESS_STATUE.start(player);
                 }
                 TCRQuests.TALK_TO_CHRONOS_END.start(player);
-            }
-
-            if (itemStack.is(AquamiraeItems.SHELL_HORN.get()) && !PlayerDataManager.cursedEyeGotten.get(player)) {
-                giveOracleEffect(player, AquamiraeItems.SHELL_HORN.get());
             }
 
             //捡起百兵图后

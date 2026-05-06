@@ -3,7 +3,6 @@ package com.p1nero.tcrcore.mixin.ba_bt;
 import com.brass_amber.ba_bt.block.blockentity.BTChestBlockEntity;
 import com.brass_amber.ba_bt.entity.block.BTAbstractObelisk;
 import com.brass_amber.ba_bt.util.GolemType;
-import com.obscuria.aquamirae.Aquamirae;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -65,7 +63,7 @@ public abstract class BTObeliskMixin extends Entity {
         } else if (block == this.golemChestBlock) {
             ResourceLocation golemLoot = switch (this.golemType) {
                 case LAND -> ResourceLocation.parse("tlc:chests/throne");
-                case OCEAN -> ResourceLocation.fromNamespaceAndPath(Aquamirae.MODID, "chests/frozen_chest");
+                case OCEAN -> ResourceLocation.parse("tlc:chests/treasure");
                 case CORE -> BuiltInLootTables.BASTION_TREASURE;
                 default -> BuiltInLootTables.END_CITY_TREASURE;
             };

@@ -78,7 +78,7 @@ public class WorldUtils {
     public static final String BONE_CHIMERA_STRUCTURE = "dodosmobs:jungle_prison";
     public static final String OCEAN_GOLEM = "ba_bt:ocean_tower";
     public static final String RIBBIT_VILLAGE = "ribbits:ribbit_village";
-    public static final String AQUAMIRAE_SHIP_STRUCTURE = "aquamirae:ship";
+    public static final String OCEAN_MONUMENT = "betteroceanmonuments:ocean_monument";
     public static final String CORE_GOLEM = "ba_bt:core_tower";
     public static final String NETHER_KEY_1 = "irons_spellbooks:citadel";
     public static final String NETHER_KEY_2 = "betterfortresses:fortress";

@@ -26,9 +26,6 @@ import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.
 import com.github.dodo.dodosmobs.init.ModEntities;
 import com.hm.efn.registries.EFNItem;
 import com.hm.efn.registries.EFNMobEffectRegistry;
-import com.obscuria.aquamirae.Aquamirae;
-import com.obscuria.aquamirae.common.entities.CaptainCornelia;
-import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.battle_field1.PBF1Mod;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
@@ -128,6 +125,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.shelmarow.combat_evolution.ai.iml.ILivingEntityData;
 import net.shelmarow.combat_evolution.ai.util.CEPatchUtils;
+import org.merlin204.leonidas.entity.LeonidasEntity;
 import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import reascer.wom.main.WeaponsOfMinecraft;
@@ -313,13 +311,13 @@ public class LivingEntityEventListeners {
                             ItemUtils.addItemEntity(player, Items.NAUTILUS_SHELL, 6);
                         }
                         ItemUtils.addItemEntity(player, ModItems.ABYSS_EYE.get(), 1, ChatFormatting.BLUE.getColor().intValue());
-                        ItemUtils.addItemEntity(player, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get(), 1, ChatFormatting.BLUE.getColor().intValue());
+                        ItemUtils.addItemEntity(player, ItemRegistry.ICY_FANG.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                         player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                     ItemUtils.addItemEntity(player, Items.HEART_OF_THE_SEA, 1, ChatFormatting.AQUA.getColor().intValue());
-                } else if (livingEntity instanceof CaptainCornelia) {
+                } else if (livingEntity instanceof LeonidasEntity) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_CURSED_EYE)) {
-                        givePlayerAward(player, 1);
+                        givePlayerAward(player, 2);
                         ItemUtils.addItemEntity(player, ModItems.CURSED_EYE.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                         ItemUtils.addItemEntity(player, TCRItems.NECROMANCY_SCROLL.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                         player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
@@ -510,20 +508,6 @@ public class LivingEntityEventListeners {
                 });
             }
 
-            //掉号角的怪重生
-            else if (event.getEntity() instanceof Pillager pillager) {
-                if(pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") || pillager.hasGlowingTag()) {
-                    SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(pillager, 1200, true);
-                    if(soulEntity != null) {
-                        soulEntity.setRespawnWhenLoadFromDisk(true);
-                        soulEntity.setPos(readSpawnPos(pillager).add(0, 0.5, 0));
-                    }
-                }
-                if (!pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") && pillager.hasGlowingTag()) {
-                    ItemUtils.addItemEntity(pillager, AquamiraeItems.SHELL_HORN.get(), 1, ChatFormatting.GOLD.getColor());
-                }
-            }
-
             //龙复活
             else if (livingEntity instanceof DragonBase dragonBase) {
                 if (dragonBase.getOwnerUUID() != null) {
@@ -643,6 +627,11 @@ public class LivingEntityEventListeners {
                 }
             }
 
+            //改用数据包
+//            else if (livingEntity instanceof LeonidasEntity) {
+//                ItemUtils.addItemEntity(livingEntity, EFNItem.DEEPDARK_HEART.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+//            }
+
             else if(livingEntity instanceof The_Prowler_Entity) {
                 ItemUtils.addItemEntity(livingEntity, Items.GUNPOWDER, 6, ChatFormatting.GOLD.getColor());
             }
@@ -706,16 +695,8 @@ public class LivingEntityEventListeners {
         }
 
         //===================双端===================
-        if (livingEntity instanceof CaptainCornelia) {
-            if (livingEntity.level().isClientSide) {
-                //修它bgm播放bug，不知道现在修了没
-                CorneliaMusicPlayer.stopBossMusic(livingEntity);
-            } else {
-                ItemUtils.addItemEntity(livingEntity, EFNItem.DEEPDARK_HEART.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
-            }
-        }
 
-        else if (livingEntity instanceof WraithonEntity) {
+        if (livingEntity instanceof WraithonEntity) {
             if (livingEntity.level().isClientSide) {
                 WraithonMusicPlayer.stopBossMusic(livingEntity);
             }
@@ -1100,14 +1081,6 @@ public class LivingEntityEventListeners {
             AttributeModifier healthBoost = new AttributeModifier(uuid, "Wither Health Boost", 1, AttributeModifier.Operation.MULTIPLY_BASE);
             witherBoss.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
             witherBoss.setHealth(witherBoss.getMaxHealth());
-        }
-
-        //海灵船长发光
-        if (event.getEntity() instanceof Pillager pillager) {
-            if (pillager.getLootTable().toString().equals(Aquamirae.MODID + ":entities/maze_captain") || pillager.getPersistentData().getString("DeathLootTable").endsWith("captain") || pillager.getTags().contains(SoulEntity.TAG)) {
-                event.getEntity().setGlowingTag(true);
-                saveSpawnPos(pillager);
-            }
         }
 
         //防止龙跑远了移除

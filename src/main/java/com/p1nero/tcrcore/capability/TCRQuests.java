@@ -6,8 +6,6 @@ import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.github.alexthe668.domesticationinnovation.server.item.DIItemRegistry;
 import com.hm.efn.registries.EFNItem;
-import com.obscuria.aquamirae.registry.AquamiraeEntities;
-import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.TCRQuestManager.Quest;
@@ -25,6 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import org.merlin204.leonidas.entity.LeonidasEntities;
 
 public class TCRQuests {
 
@@ -93,6 +92,7 @@ public class TCRQuests {
     public static Quest TALK_TO_CHRONOS_4;
     public static Quest GO_TO_OVERWORLD_CURSED;
     public static Quest USE_CURSED_RESONANCE_STONE;
+//    public static Quest FIND_HELMET_IN_OCEAN_MONUMENT;
     public static Quest GET_CURSED_EYE;
     public static Quest TALK_TO_CHRONOS_5;
 
@@ -356,7 +356,7 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE),
                         TCREntities.CHRONOS_SOL.get().getDescription(),
-                        AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription())
+                        ItemRegistry.ICY_FANG.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         RIBBITS_QUEST = TCRQuestManager.create("ribbits_quest")
@@ -377,27 +377,27 @@ public class TCRQuests {
         TALK_TO_AINE_ECHO = TCRQuestManager.create("talk_to_aine_echo")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(),
-                        AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
+                        ItemRegistry.ICY_FANG.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCREntities.AINE.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_4 = TCRQuestManager.create("talk_to_chronos_4")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription(),
-                        AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
+                        ItemRegistry.ICY_FANG.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCREntities.CHRONOS_SOL.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_OVERWORLD_CURSED = TCRQuestManager.create("go_to_overworld_cursed")
                 .shortDescParam(WorldUtils.OVERWORLD_NAME)
-                .descParam(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
+                .descParam(ItemRegistry.ICY_FANG.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         WorldUtils.OVERWORLD_NAME,
                         TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
 
         USE_CURSED_RESONANCE_STONE = TCRQuestManager.create("use_cursed_resonance_stone")
                 .shortDescParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
-                .descParam(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
+                .descParam(ItemRegistry.ICY_FANG.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         WorldUtils.OVERWORLD_NAME,
                         TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
@@ -407,7 +407,7 @@ public class TCRQuests {
                 .descParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
-                        AquamiraeEntities.CAPTAIN_CORNELIA.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN));
+                        LeonidasEntities.LEONIDAS.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN));
 
         TALK_TO_CHRONOS_5 = TCRQuestManager.create("talk_to_chronos_5")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
@@ -417,7 +417,7 @@ public class TCRQuests {
 
         TALK_TO_AINE_MAGIC = TCRQuestManager.create("talk_to_aine_magic")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
-                .descParam(AquamiraeEntities.CAPTAIN_CORNELIA.get().getDescription(),
+                .descParam(LeonidasEntities.LEONIDAS.get().getDescription(),
                         TCRItems.NECROMANCY_SCROLL.get().getDescription(),
                         TCREntities.AINE.get().getDescription())
                 .withIcon(SIDE_QUEST_1)

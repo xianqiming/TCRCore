@@ -1,8 +1,6 @@
 package com.p1nero.tcrcore.entity.custom.aine_iris;
 
 import com.aetherteam.aether.block.AetherBlocks;
-import com.obscuria.aquamirae.registry.AquamiraeEntities;
-import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.dialog_lib.api.component.DialogNode;
 import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.api.entity.custom.IEntityNpc;
@@ -64,6 +62,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.merlin204.leonidas.entity.LeonidasEntities;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -164,11 +163,13 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
             return dialogueScreenBuilder.build();
         } else if (TCRQuests.TALK_TO_AINE_ECHO.equals(currentQuest)) {
             dialogueScreenBuilder.start(dBuilder.ans(4, localPlayer.getDisplayName()))
-                    .addOption(dBuilder.opt(7, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription()), dBuilder.ans(9))
+                    .addOption(dBuilder.opt(7, ItemRegistry.ICY_FANG.get().getDescription()), dBuilder.ans(9))
                     .addOption(-1, 10)
                     .thenExecute(3)
-                    .addOption(dBuilder.opt(-1), dBuilder.ans(11, TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription()))
-                    .addOption(dBuilder.opt(8, AquamiraeEntities.CAPTAIN_CORNELIA.get().getDescription(), TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription()), dBuilder.ans(12, TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription(), com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription()))
+                    .addOption(dBuilder.opt(-1),
+                            dBuilder.ans(111, LeonidasEntities.LEONIDAS.get().getDescription(), TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription(), LeonidasEntities.LEONIDAS.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription()))
+                    .addOption(dBuilder.opt(8, LeonidasEntities.LEONIDAS.get().getDescription(), TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription()),
+                            dBuilder.ans(112, TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription(), LeonidasEntities.LEONIDAS.get().getDescription(), com.github.L_Ender.cataclysm.init.ModItems.CURSED_EYE.get().getDescription(), WorldUtils.getStructureName(WorldUtils.OCEAN_MONUMENT)))
                     .addFinalOption(-2, 4);
             return dialogueScreenBuilder.build();
         } else if (TCRQuests.TALK_TO_AINE_MAGIC.equals(currentQuest)) {

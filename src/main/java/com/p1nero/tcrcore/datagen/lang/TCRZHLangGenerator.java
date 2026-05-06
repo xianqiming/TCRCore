@@ -604,9 +604,9 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCREntities.AINE.get(), 7, "§a关于[%s§a]");
         this.addDialogAnswer(TCREntities.AINE.get(), 9, "这是...特殊的忆质呢，似乎记载了一个团体的记忆，而不是某个生命的记忆。让我们看看其中有什么秘密吧！");
         this.addDialogAnswer(TCREntities.AINE.get(), 10, "！！");
-        this.addDialogAnswer(TCREntities.AINE.get(), 11, "上面记载了可妮莉亚船长(Captain Cornelia)的冒险故事，并且从记忆来看，灵魂使徒(Soul Angel) %s 被黑潮侵蚀后，就附身在可妮莉亚船长(Captain Cornelia)身上！快把这份解读的记忆给%s看看吧！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 111, "这是属于灵魂使徒(Soul Angel) 麾下的战士[%s]的头盔，并且从记忆来看，灵魂使徒(Soul Angel) %s 被黑潮侵蚀后，就附身在[%s]身上！快把这份解读的记忆给%s看看吧！");
         this.addDialogOption(TCREntities.AINE.get(), 8, "%s? %s?");
-        this.addDialogAnswer(TCREntities.AINE.get(), 12, "灵魂之使徒，%s，掌管亡者之世界。可妮莉亚船长(Captain Cornelia)的船队则是世界闻名的远洋船队，受到黑潮的诅咒，和[%s]一起永远困在了那片寒冰迷宫！");
+        this.addDialogAnswer(TCREntities.AINE.get(), 112, "灵魂之使徒，%s，掌管亡者之世界。[%s]则是祂麾下最英勇的战士。受到黑潮的诅咒，和[%s]一起永远困在了[%s]！");
         this.addDialogAnswer(TCREntities.AINE.get(), 13, "[%s]？让我看看，又是一份特殊的记忆呢...");
         this.addDialogAnswer(TCREntities.AINE.get(), 14, "哼哼，看来掌管冥界的灵魂使徒，还掌握了生灵法术！");
         this.addDialogAnswer(TCREntities.AINE.get(), 15, "[%s]上带给了我们两个信息，§6其一是，它为我们描绘了世界上大部分受到黑潮侵蚀的魔物！");
