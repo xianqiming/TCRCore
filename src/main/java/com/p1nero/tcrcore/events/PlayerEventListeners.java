@@ -83,6 +83,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.p1nero.ss.SwordSoaringMod;
 import net.p1nero.ss.gameassets.skills.SwordControllerSkills;
+import org.merlin204.leonidas.item.LeonidasItems;
 import org.merlin204.wraithon.util.PositionTeleporter;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import top.theillusivec4.curios.api.event.CurioEquipEvent;
@@ -686,10 +687,15 @@ public class PlayerEventListeners {
             return;
         }
         for (int i = 0; i < event.getContainer().slots.size(); i++) {
-            if (illegalItems.contains(event.getContainer().getItems().get(i).getItem())) {
-                event.getContainer().getItems().get(i).setCount(0);
+            ItemStack itemStack = event.getContainer().getItems().get(i);
+            if(itemStack.is(LeonidasItems.THE_LOST_HELMET.get()) && event.getEntity() instanceof ServerPlayer serverPlayer) {
+                if(!TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT.isFinished(serverPlayer)) {
+                    TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT.finish(serverPlayer, true);
+                }
             }
-
+            if (illegalItems.contains(itemStack.getItem())) {
+                itemStack.setCount(0);
+            }
         }
     }
 
@@ -701,6 +707,10 @@ public class PlayerEventListeners {
     public static void onItemPickedUp(PlayerEvent.ItemPickupEvent event) {
         ItemStack itemStack = event.getStack();
         if (event.getEntity() instanceof ServerPlayer player) {
+
+            if(itemStack.is(LeonidasItems.THE_LOST_HELMET.get()) && !TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT.isFinished(player)) {
+                TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT.finish(player, true);
+            }
 
             //持有任务时捡起来才推进进度
             if (TCRQuestManager.hasQuest(player, TCRQuests.GET_DESERT_EYE) && itemStack.is(ModItems.DESERT_EYE.get())) {

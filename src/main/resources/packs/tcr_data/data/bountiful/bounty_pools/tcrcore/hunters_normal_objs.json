@@ -243,28 +243,6 @@
 			"unitWorth": 33
 		},
 
-		"hunters_normal_obj_guardian": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:guardian",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 33
-		},
-
-		"hunters_normal_obj_elder_guardian": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:elder_guardian",
-			"amount": {
-				"min": 3,
-				"max": 3
-			},
-			"unitWorth": 500
-		},
-
 		"hunters_normal_obj_warden": {
 			"type": "entity",
 			"timeMult": 5.0,

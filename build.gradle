@@ -282,7 +282,7 @@ dependencies {
     implementation fg.deobf("curse.maven:epic-fight-super-golem-1236331:6861276")
     implementation fg.deobf("curse.maven:epic-fight-super-warden-1272352:6640554")
 
-    implementation fg.deobf("curse.maven:kill-cam-1489164:7787111")
+//    implementation fg.deobf("curse.maven:kill-cam-1489164:7787111")
 
     implementation fg.deobf("curse.maven:fantasy-armor-1083998:7850802")
 
@@ -354,8 +354,6 @@ dependencies {
     implementation fg.deobf("curse.maven:zeta-968868:6432578")
     implementation fg.deobf("curse.maven:yungs-better-ocean-monuments-689238:4883003")
 
-    implementation fg.deobf("libs:lukis-grand-capitals:1.1.2")
-//    implementation fg.deobf("libs:trek:B0.5") //内置为数据包，curse forge用数据包形式下载
     implementation fg.deobf("curse.maven:when-dungeons-arise-442508:4983862")
     implementation fg.deobf("curse.maven:towns-and-towers-626761:4923828")
     implementation fg.deobf("curse.maven:cristel-lib-856996:5869180")

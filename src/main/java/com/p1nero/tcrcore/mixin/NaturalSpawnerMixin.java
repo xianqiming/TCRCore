@@ -5,6 +5,8 @@ import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.NaturalSpawner;
 import net.minecraft.world.level.chunk.LevelChunk;
+import org.merlin204.arachne.worldgen.ArachneDimensions;
+import org.merlin204.leonidas.worldgen.LeonidasDimensions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,7 +17,11 @@ public class NaturalSpawnerMixin {
 
     @Inject(method = "spawnForChunk", at = @At("HEAD"), cancellable = true)
     private static void tcr$spawnForChunk(ServerLevel pLevel, LevelChunk pChunk, NaturalSpawner.SpawnState pSpawnState, boolean pSpawnFriendlies, boolean pSpawnMonsters, boolean pForcedDespawn, CallbackInfo ci) {
-        if(pLevel.dimension() == TCRDimensions.SANCTUM_LEVEL_KEY || pLevel.dimension() == TCRDimensions.REAL_LEVEL_KEY || pLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) {
+        if(pLevel.dimension() == TCRDimensions.SANCTUM_LEVEL_KEY
+                || pLevel.dimension() == TCRDimensions.REAL_LEVEL_KEY
+                || pLevel.dimension() == LeonidasDimensions.ROCKWIND_RUINS_LEVEL_KEY
+                || pLevel.dimension() == ArachneDimensions.ARACHNE_NEST_LEVEL_KEY
+                || pLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) {
             ci.cancel();
         }
     }

@@ -148,6 +148,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addQuest(TCRQuests.TALK_TO_CHRONOS_4, "灵魂之章", "和%s对话", "%s已经将[%s]解读完毕了，现在请把消息告诉%s吧！");
         this.addQuest(TCRQuests.GO_TO_OVERWORLD_CURSED, "灵魂之章", "前往[%s]", "你意外地从[%s]中获得了[%s]散落的位置，快前去[%s]寻回它吧！[%s]将为我们指引它的位置。");
         this.addQuest(TCRQuests.USE_CURSED_RESONANCE_STONE, "灵魂之章", "使用[%s]", "你意外地从[%s]中获得了[%s]散落的位置，快前去[%s]寻回它吧！[%s]将为我们指引它的位置。");
+        this.addQuest(TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT, "灵魂之章", "寻找[%s]", "[%s]告诉我们，召唤[%s]的道具就藏在[%s]内的宝藏之中！快去[%s]里面找找吧！");
         this.addQuest(TCRQuests.GET_CURSED_EYE, "灵魂之章", "寻回[%s]", "[%s]为我们标记了[%s]所散落的位置，快出发去寻回[%s]吧！\n\n§a[提示]:§f探索以寻找召唤[%s]的线索！");
         this.addQuest(TCRQuests.TALK_TO_CHRONOS_5, "灵魂之章", "和%s对话", "[%s]已经寻回，快回主城找%s汇报吧！她将告诉我们下一步该做什么。");
 

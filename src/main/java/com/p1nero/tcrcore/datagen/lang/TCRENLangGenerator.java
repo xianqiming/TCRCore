@@ -148,6 +148,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addQuest(TCRQuests.TALK_TO_CHRONOS_4, "Soul Chapter", "Talk to %s", "%s has finished deciphering [%s]. Now, go tell %s the news!");
         this.addQuest(TCRQuests.GO_TO_OVERWORLD_CURSED, "Soul Chapter", "Go to [%s]", "You unexpectedly obtained the scattered location of [%s] from [%s]. Hurry to [%s] to retrieve it! [%s] will guide us to its location.");
         this.addQuest(TCRQuests.USE_CURSED_RESONANCE_STONE, "Soul Chapter", "Use [%s]", "You unexpectedly obtained the scattered location of [%s] from [%s]. Hurry to [%s] to retrieve it! [%s] will guide us to its location.");
+        this.addQuest(TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT, "Soul Chapter", "Find [%s]", "[%s] tells us that the item to summon [%s] is hidden in the treasure within [%s]! Go find it inside [%s]!");
         this.addQuest(TCRQuests.GET_CURSED_EYE, "Soul Chapter", "Retrieve [%s]", "[%s] has marked the scattered locations of [%s]. Set out to retrieve [%s]!\n\n§a[Hint]: §fExplore to find clues to summon [%s]!");
         this.addQuest(TCRQuests.TALK_TO_CHRONOS_5, "Soul Chapter", "Talk to %s", "[%s] has been retrieved. Hurry back to the Sanctum to report to %s! She will tell us what to do next.");
 

@@ -92,7 +92,7 @@ public class TCRMainLevelSaveData extends SavedData {
     }
 
     public static TCRMainLevelSaveData get(ServerLevel worldIn) {
-        ServerLevel world = worldIn.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
+        ServerLevel world = worldIn.dimension() == TCRDimensions.SANCTUM_LEVEL_KEY ? worldIn : worldIn.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
         if(world == null) {
             throw new IllegalStateException("主城维度丢失！请重新创建世界！Please recreate a new world!");
         }

@@ -131,6 +131,7 @@ import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import reascer.wom.main.WeaponsOfMinecraft;
 import reascer.wom.world.entity.mob.EvilSkeleton;
 import reascer.wom.world.entity.mob.Hollow;
+import reascer.wom.world.entity.mob.Lycanth;
 import reascer.wom.world.entity.mob.Saulomonk;
 import yesman.epicfight.api.animation.AnimationPlayer;
 import yesman.epicfight.client.input.EpicFightKeyMappings;
@@ -317,7 +318,7 @@ public class LivingEntityEventListeners {
                     ItemUtils.addItemEntity(player, Items.HEART_OF_THE_SEA, 1, ChatFormatting.AQUA.getColor().intValue());
                 } else if (livingEntity instanceof LeonidasEntity) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_CURSED_EYE)) {
-                        givePlayerAward(player, 2);
+                        givePlayerAward(player, 1);
                         ItemUtils.addItemEntity(player, ModItems.CURSED_EYE.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                         ItemUtils.addItemEntity(player, TCRItems.NECROMANCY_SCROLL.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                         player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
@@ -812,6 +813,7 @@ public class LivingEntityEventListeners {
             } else if (
                     //打份怪获得buff
                     event.getSource().getEntity() instanceof Hollow
+                            || event.getSource().getEntity() instanceof Lycanth
                             || event.getSource().getEntity() instanceof EvilSkeleton
                             || event.getSource().getEntity() instanceof Saulomonk) {
                 serverPlayer.addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 100, 0));
@@ -959,6 +961,8 @@ public class LivingEntityEventListeners {
             return;
         }
 
+        LivingEntity livingEntity = ((LivingEntity) event.getEntity());
+
         //全局的设置
         if(event.getEntity() instanceof LivingEntity living && !(living instanceof Player)) {
             //处理多周目
@@ -1028,7 +1032,7 @@ public class LivingEntityEventListeners {
 
         //海洋塔溺尸取消游泳
         if (event.getEntity() instanceof Drowned drowned) {
-            if (WorldUtils.isInStructure(drowned, WorldUtils.OCEAN_GOLEM)) {
+            if (WorldUtils.isInStructure(drowned, WorldUtils.OCEAN_GOLEM) || WorldUtils.isInStructure(drowned, WorldUtils.OCEAN_MONUMENT)) {
                 drowned.getPersistentData().putBoolean("spawn_in_ocean_tower", true);
             }
         }
@@ -1048,8 +1052,12 @@ public class LivingEntityEventListeners {
         }
 
         //移除远古守卫者在海洋塔的生成
-        if (event.getEntity() instanceof Guardian guardian && WorldUtils.isInStructure(guardian, WorldUtils.OCEAN_GOLEM)) {
-            event.setCanceled(true);
+        if (event.getEntity() instanceof Guardian || event.getEntity() instanceof ElderGuardian) {
+            if(WorldUtils.isInStructure(livingEntity, WorldUtils.OCEAN_GOLEM) || WorldUtils.isInStructure(livingEntity, WorldUtils.OCEAN_MONUMENT)) {
+//                EntityType.DROWNED.spawn(serverLevel, livingEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
+                event.setCanceled(true);
+                return;
+            }
         }
 
         if (event.getEntity() instanceof IronGolem ironGolem) {

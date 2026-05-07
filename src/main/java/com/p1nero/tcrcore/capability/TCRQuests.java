@@ -24,6 +24,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import org.merlin204.leonidas.entity.LeonidasEntities;
+import org.merlin204.leonidas.item.LeonidasItems;
 
 public class TCRQuests {
 
@@ -92,7 +93,7 @@ public class TCRQuests {
     public static Quest TALK_TO_CHRONOS_4;
     public static Quest GO_TO_OVERWORLD_CURSED;
     public static Quest USE_CURSED_RESONANCE_STONE;
-//    public static Quest FIND_HELMET_IN_OCEAN_MONUMENT;
+    public static Quest FIND_HELMET_IN_OCEAN_MONUMENT;
     public static Quest GET_CURSED_EYE;
     public static Quest TALK_TO_CHRONOS_5;
 
@@ -401,6 +402,13 @@ public class TCRQuests {
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         WorldUtils.OVERWORLD_NAME,
                         TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
+
+        FIND_HELMET_IN_OCEAN_MONUMENT = TCRQuestManager.create("find_helmet_in_ocean_monument")
+                .shortDescParam(LeonidasItems.THE_LOST_HELMET.get().getDescription().copy().withStyle(ChatFormatting.GOLD))
+                .descParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription(),
+                        LeonidasEntities.LEONIDAS.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
+                        WorldUtils.getStructureName(WorldUtils.OCEAN_MONUMENT),
+                        WorldUtils.getStructureName(WorldUtils.OCEAN_MONUMENT));
 
         GET_CURSED_EYE = TCRQuestManager.create("get_cursed_eye")
                 .shortDescParam(ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))

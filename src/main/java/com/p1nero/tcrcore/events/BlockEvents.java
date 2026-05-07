@@ -39,6 +39,7 @@ public class BlockEvents {
             if(event.getState().is(ModBlocks.GODDESS_STATUE.get()) && WorldUtils.inMainLand(event.getPlayer())) {
                 EntityType.LIGHTNING_BOLT.spawn(serverLevel, event.getPos(), MobSpawnType.MOB_SUMMONED);
                 event.setCanceled(true);
+                return;
             }
             if(CataclysmDimensions.LEVELS.contains(event.getPlayer().level().dimension())) {
                 if(!TCRDimSaveData.get(serverLevel).isBossKilled()) {
@@ -46,6 +47,7 @@ public class BlockEvents {
                     event.setCanceled(true);
                     serverLevel.destroyBlock(event.getPos(), false);
                 }
+                return;
             }
             //在呱呱村庄打爆紫水晶块概率出遗忘者
             if(WorldUtils.isInStructure(event.getPlayer(), WorldUtils.RIBBIT_VILLAGE) && serverLevel.isDay()){
@@ -88,6 +90,9 @@ public class BlockEvents {
                     return;
                 }
                 event.setCanceled(true);
+                if(event.getEntity() instanceof Player player) {
+                    player.getInventory().setChanged();
+                }
             }
             //幻境禁止摆放
             if(event.getEntity().level() instanceof ServerLevel serverLevel) {

@@ -101,6 +101,7 @@ public class TCRItems {
                         }
                         TCRQuests.USE_CURSED_RESONANCE_STONE.finish(serverPlayer, true);
                         TCRQuests.GET_CURSED_EYE.start(serverPlayer);
+                        TCRQuests.FIND_HELMET_IN_OCEAN_MONUMENT.start(serverPlayer);
                     }))
     );
 
