@@ -38,8 +38,8 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0,
-                "max": 2
+                "min": 4,
+                "max": 10
               }
             }
           ]
@@ -110,6 +110,34 @@
               "count": {
                 "min": 0,
                 "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "minecraft:iron_ingot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 8,
+                "max": 24
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "minecraft:gold_ingot",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 16
               }
             }
           ]
