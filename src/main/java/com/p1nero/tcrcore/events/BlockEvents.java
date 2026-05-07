@@ -91,7 +91,7 @@ public class BlockEvents {
                 }
                 event.setCanceled(true);
                 if(event.getEntity() instanceof Player player) {
-                    player.getInventory().setChanged();
+                    player.containerMenu.broadcastFullState();
                 }
             }
             //幻境禁止摆放
