@@ -143,7 +143,8 @@ public class TCRCoreMod {
             PEpicCataclysmMod.theIncineratorLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.IGNIS_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.RED);
 
-            TeamEvent.PLAYER_CHANGED.register(PlayerEventListeners::onPlayerTeamChanged);
+            TeamEvent.PLAYER_JOINED_PARTY.register(PlayerEventListeners::onPlayerTeamChanged);
+            TeamEvent.CREATED.register(PlayerEventListeners::onTeamCreated);
         });
     }
 

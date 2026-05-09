@@ -39,6 +39,8 @@ import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.betterendisland.world.IDragonFight;
 import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
+import dev.ftb.mods.ftbteams.api.event.PlayerJoinedPartyTeamEvent;
+import dev.ftb.mods.ftbteams.api.event.TeamCreatedEvent;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -102,16 +104,20 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class PlayerEventListeners {
 
-    public static void onPlayerTeamChanged(PlayerChangedTeamEvent playerChangedTeamEvent) {
-        ServerPlayer serverPlayer = playerChangedTeamEvent.getPlayer();
-        if(serverPlayer == null) {
-            return;
-        }
-        Team team = playerChangedTeamEvent.getTeam();
-        if(team == null || !team.isPartyTeam()) {
+    public static void onPlayerTeamChanged(PlayerJoinedPartyTeamEvent playerJoinedPartyTeamEvent) {
+        ServerPlayer serverPlayer = playerJoinedPartyTeamEvent.getPlayer();
+        Team team = playerJoinedPartyTeamEvent.getTeam();
+        if(team == null) {
             return;
         }
         FTBTeamUtils.syncDataFromTeam(serverPlayer, team);
+        serverPlayer.displayClientMessage(TCRCoreMod.getInfo("join_party_warning").withStyle(ChatFormatting.GOLD), false);
+    }
+
+    public static void onTeamCreated(TeamCreatedEvent teamCreatedEvent) {
+        if(teamCreatedEvent.getTeam().isPartyTeam()) {
+            teamCreatedEvent.getCreator().displayClientMessage(TCRCoreMod.getInfo("join_party_warning").withStyle(ChatFormatting.GOLD), false);
+        }
     }
 
     @SubscribeEvent

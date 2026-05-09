@@ -319,6 +319,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "镇九州");
         this.add(TCRItems.MAGIC_SPEAR.get(), "贯长空");
 
+        this.addInfo("join_party_warning", "[警告]：本整合包不建议组建FTB Party Team游玩，若绑定同FTB Party Team，则所有主线任务进度将在团队之间共享，剧情中做出的所有选择将在团队之间同步，并且不在线的玩家将可能错失重要道具！");
         this.addInfo("possible_loot", "可能获得的奖励：");
         this.addInfo("ocean_tower_breaking", "海洋塔正在响应深渊呼唤，请等待...");
         this.addInfo("team_progress_synced", "团队进度同步！");

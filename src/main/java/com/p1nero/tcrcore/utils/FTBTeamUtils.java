@@ -128,7 +128,7 @@ public class FTBTeamUtils {
                 toBroadcast = oldPlayer;
             }
 
-            toBroadcast.displayClientMessage(TCRCoreMod.getInfo("team_progress_synced").withStyle(ChatFormatting.GOLD), false);
+            toBroadcast.displayClientMessage(TCRCoreMod.getInfo("team_progress_synced").withStyle(ChatFormatting.GREEN), false);
             TCRQuestManager.ensureQuest(toBroadcast);
             tcrPlayer.syncToClient(toBroadcast);
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);

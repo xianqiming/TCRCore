@@ -409,6 +409,7 @@
   "info.tcr.illegal_item_tip": "§c检测到非法物品！",
   "info.tcr.illegal_item_tip2": "§6当前没有使用此物品的命运。",
   "info.tcr.iron_golem_name": "天空岛之守卫",
+  "info.tcr.join_party_warning": "[警告]：本整合包不建议组建FTB Party Team游玩，若绑定同FTB Party Team，则所有主线任务进度将在团队之间共享，剧情中做出的所有选择将在团队之间同步，并且不在线的玩家将可能错失重要道具！",
   "info.tcr.kill_arterius": "[%s]: 异界之人，果然有几分本事！看来预言是对的！这几块[%s§f]，赠予你罢！",
   "info.tcr.lock_tutorial": "按下§6[%s§6]§r以锁定目标",
   "info.tcr.lock_tutorial_sub": "§c晃动鼠标以切换锁定目标！再次按下以解除锁定！",

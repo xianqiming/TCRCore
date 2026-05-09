@@ -409,6 +409,7 @@
   "info.tcr.illegal_item_tip": "§cIllegal Item!",
   "info.tcr.illegal_item_tip2": "§6Currently, you are not destined to use this item.",
   "info.tcr.iron_golem_name": "Sky Island Guardian",
+  "info.tcr.join_party_warning": "[Warning]: It is not recommended to play this modpack with your friend in same FTB Party team. If bound to the same FTB Party team, all main quest progress will be shared among the team, all choices made in the story will be synchronized across the team, and offline players may miss important items!",
   "info.tcr.kill_arterius": "[%s]: Otherworlder, you are indeed formidable! It seems the prophecy is true! Then, I shall bestow these pieces of [%s] upon you!",
   "info.tcr.lock_tutorial": "§6[[%s§6]§r to lock on",
   "info.tcr.lock_tutorial_sub": "§cMove the mouse to switch targets!",
