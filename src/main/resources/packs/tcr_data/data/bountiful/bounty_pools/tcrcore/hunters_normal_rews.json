@@ -5,7 +5,7 @@
       "rarity": "COMMON",
       "content": "minecraft:coal",
       "amount": {
-        "min": 1,
+        "min": 32,
         "max": 128
       },
       "unitWorth": 10
@@ -15,7 +15,7 @@
       "rarity": "COMMON",
       "content": "minecraft:copper_ingot",
       "amount": {
-        "min": 1,
+        "min": 16,
         "max": 64
       },
       "unitWorth": 20
@@ -25,7 +25,7 @@
       "rarity": "COMMON",
       "content": "minecraft:iron_ingot",
       "amount": {
-        "min": 1,
+        "min": 16,
         "max": 64
       },
       "unitWorth": 20
@@ -35,7 +35,7 @@
       "rarity": "COMMON",
       "content": "minecraft:gold_ingot",
       "amount": {
-        "min": 1,
+        "min": 16,
         "max": 64
       },
       "unitWorth": 40
@@ -45,7 +45,7 @@
       "rarity": "COMMON",
       "content": "minecraft:emerald",
       "amount": {
-        "min": 1,
+        "min": 16,
         "max": 64
       },
       "unitWorth": 40
