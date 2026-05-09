@@ -26,7 +26,7 @@
 
 		"hunters_normal_rews_copper_ingot": {
 			"type": "item",
-			"rarity": "UNCOMMON",
+			"rarity": "COMMON",
 			"content": "minecraft:copper_ingot",
 			"amount": {
 				"min": 1,
@@ -37,7 +37,7 @@
 
 		"hunters_normal_rews_iron_ingot": {
 			"type": "item",
-			"rarity": "UNCOMMON",
+			"rarity": "COMMON",
 			"content": "minecraft:iron_ingot",
 			"amount": {
 				"min": 1,
@@ -48,7 +48,7 @@
 
 		"hunters_normal_rews_gold_ingot": {
 			"type": "item",
-			"rarity": "UNCOMMON",
+			"rarity": "COMMON",
 			"content": "minecraft:gold_ingot",
 			"amount": {
 				"min": 1,
@@ -59,7 +59,7 @@
 
 		"hunters_normal_rews_emerald": {
 			"type": "item",
-			"rarity": "RARE",
+			"rarity": "COMMON",
 			"content": "minecraft:emerald",
 			"amount": {
 				"min": 1,
@@ -70,7 +70,7 @@
 
 		"hunters_normal_rews_diamond": {
 			"type": "item",
-			"rarity": "RARE",
+			"rarity": "COMMON",
 			"content": "minecraft:diamond",
 			"amount": {
 				"min": 1,
@@ -81,7 +81,7 @@
 
 		"hunters_normal_rews_ghast_tear": {
 			"type": "item",
-			"rarity": "RARE",
+			"rarity": "COMMON",
 			"content": "minecraft:ghast_tear",
 			"amount": {
 				"min": 1,
@@ -92,7 +92,7 @@
 
         "hunters_normal_netherite_ingot": {
           "type": "item",
-          "rarity": "RARE",
+          "rarity": "COMMON",
           "content": "minecraft:netherite_ingot",
           "amount": {
             "min": 1,

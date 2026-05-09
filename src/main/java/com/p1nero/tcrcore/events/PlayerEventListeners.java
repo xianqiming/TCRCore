@@ -111,7 +111,9 @@ public class PlayerEventListeners {
             return;
         }
         FTBTeamUtils.syncDataFromTeam(serverPlayer, team);
-        serverPlayer.displayClientMessage(TCRCoreMod.getInfo("join_party_warning").withStyle(ChatFormatting.GOLD), false);
+        if(!team.getOwner().equals(serverPlayer.getUUID())) {
+            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("join_party_warning").withStyle(ChatFormatting.GOLD), false);
+        }
     }
 
     public static void onTeamCreated(TeamCreatedEvent teamCreatedEvent) {

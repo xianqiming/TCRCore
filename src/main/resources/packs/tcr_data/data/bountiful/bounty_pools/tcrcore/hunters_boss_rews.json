@@ -4,7 +4,7 @@
 
 		"hunters_boss_rews_netherite_ingot": {
 			"type": "item",
-			"rarity": "LEGENDARY",
+			"rarity": "EPIC",
 			"content": "minecraft:netherite_ingot",
 			"amount": {
 				"min": 1,
@@ -12,6 +12,28 @@
 			},
 			"unitWorth": 250
 		},
+
+        "hunters_boss_rews_netherite_upgrade_smithing_template": {
+          "type": "item",
+          "rarity": "EPIC",
+          "content": "minecraft:netherite_upgrade_smithing_template",
+          "amount": {
+            "min": 1,
+            "max": 1
+          },
+          "unitWorth": 250
+        },
+
+        "hunters_boss_rews_ender_eye": {
+            "type": "item",
+            "rarity": "EPIC",
+            "content": "minecraft:ender_eye",
+            "amount": {
+              "min": 1,
+              "max": 2
+            },
+            "unitWorth": 250
+        },
 
 		"hunters_boss_rews_moon_crystal": {
 			"type": "item",
@@ -26,7 +48,7 @@
 
 		"hunters_boss_rews_ability_stone_d1": {
 			"type": "item",
-			"rarity": "LEGENDARY",
+			"rarity": "EPIC",
 			"content": "epicskills:ability_stone",
 			"amount": {
 				"min": 1,

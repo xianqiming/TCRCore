@@ -4,7 +4,7 @@
 		"hunters_boss_obj_void_worm": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "EPIC",
+			"rarity": "RARE",
 			"content": "alexsmobs:void_worm",
 			"amount": {
 				"min": 1,
@@ -16,7 +16,7 @@
 		"hunters_boss_obj_ferrous_wroughtnaut": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "RARE",
+			"rarity": "COMMON",
 			"content": "mowziesmobs:ferrous_wroughtnaut",
 			"amount": {
 				"min": 1,
@@ -27,7 +27,7 @@
 		"hunters_boss_obj_umvuthi": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "RARE",
+			"rarity": "COMMON",
 			"content": "mowziesmobs:umvuthi",
 			"amount": {
 				"min": 1,
@@ -39,7 +39,7 @@
 		"hunters_boss_obj_frostmaw": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "RARE",
+			"rarity": "COMMON",
 			"content": "mowziesmobs:frostmaw",
 			"amount": {
 				"min": 1,
@@ -51,7 +51,7 @@
 		"hunters_boss_obj_obsidilith": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "EPIC",
+			"rarity": "RARE",
 			"content": "bosses_of_mass_destruction:obsidilith",
 			"amount": {
 				"min": 1,
@@ -63,7 +63,7 @@
 		"hunters_boss_obj_gauntlet": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "EPIC",
+			"rarity": "COMMON",
 			"content": "bosses_of_mass_destruction:gauntlet",
 			"amount": {
 				"min": 1,
@@ -75,7 +75,7 @@
 		"hunters_boss_obj_void_blossom": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "EPIC",
+			"rarity": "COMMON",
 			"content": "bosses_of_mass_destruction:void_blossom",
 			"amount": {
 				"min": 1,
