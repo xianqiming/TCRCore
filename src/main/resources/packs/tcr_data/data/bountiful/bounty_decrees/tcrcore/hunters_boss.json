@@ -3,7 +3,6 @@
 		"hunters_boss_objs"
 	],
 	"rewards": [
-		"hunters_normal_rews",
 		"hunters_boss_rews"
 	]
 }

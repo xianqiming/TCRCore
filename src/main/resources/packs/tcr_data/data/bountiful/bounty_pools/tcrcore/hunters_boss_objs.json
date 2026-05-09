@@ -22,8 +22,9 @@
 				"min": 1,
 				"max": 1
 			},
-			"unitWorth": 3000
+			"unitWorth": 4000
 		},
+      
 		"hunters_boss_obj_umvuthi": {
 			"type": "entity",
 			"timeMult": 10.0,
@@ -33,7 +34,7 @@
 				"min": 1,
 				"max": 1
 			},
-			"unitWorth": 3000
+			"unitWorth": 4000
 		},
 
 		"hunters_boss_obj_frostmaw": {
@@ -45,7 +46,7 @@
 				"min": 1,
 				"max": 1
 			},
-			"unitWorth": 3000
+			"unitWorth": 4000
 		},
 
 		"hunters_boss_obj_obsidilith": {
@@ -63,7 +64,7 @@
 		"hunters_boss_obj_gauntlet": {
 			"type": "entity",
 			"timeMult": 10.0,
-			"rarity": "COMMON",
+			"rarity": "UNCOMMON",
 			"content": "bosses_of_mass_destruction:gauntlet",
 			"amount": {
 				"min": 1,

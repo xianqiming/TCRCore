@@ -7,11 +7,33 @@
 			"rarity": "EPIC",
 			"content": "minecraft:netherite_ingot",
 			"amount": {
-				"min": 1,
-				"max": 4
+				"min": 9,
+				"max": 10
 			},
-			"unitWorth": 250
+			"unitWorth": 200
 		},
+
+        "hunters_normal_rews_gold_ingot": {
+          "type": "item",
+          "rarity": "EPIC",
+          "content": "minecraft:netherite_scrap",
+          "amount": {
+            "min": 45,
+            "max": 50
+          },
+          "unitWorth": 40
+        },
+
+        "hunters_normal_rews_diamond": {
+          "type": "item",
+          "rarity": "EPIC",
+          "content": "minecraft:diamond",
+          "amount": {
+            "min": 38,
+            "max": 40
+          },
+          "unitWorth": 50
+        },
 
         "hunters_boss_rews_netherite_upgrade_smithing_template": {
           "type": "item",
@@ -21,7 +43,7 @@
             "min": 1,
             "max": 1
           },
-          "unitWorth": 250
+          "unitWorth": 2000
         },
 
         "hunters_boss_rews_ender_eye": {
@@ -29,10 +51,10 @@
             "rarity": "EPIC",
             "content": "minecraft:ender_eye",
             "amount": {
-              "min": 1,
-              "max": 2
+              "min": 8,
+              "max": 10
             },
-            "unitWorth": 250
+            "unitWorth": 200
         },
 
 		"hunters_boss_rews_moon_crystal": {
@@ -40,10 +62,10 @@
 			"rarity": "EPIC",
 			"content": "fantasy_armor:moon_crystal",
 			"amount": {
-				"min": 1,
-				"max": 4
+				"min": 2,
+				"max": 2
 			},
-			"unitWorth": 250
+			"unitWorth": 1000
 		},
 
 		"hunters_boss_rews_ability_stone_d1": {
@@ -54,7 +76,7 @@
 				"min": 1,
 				"max": 1
 			},
-			"unitWorth": 1000
+			"unitWorth": 2000
 		},
 
 		"hunters_boss_rews_ability_stone_d2": {
@@ -88,19 +110,7 @@
 				"max": 4
 			},
 			"unitWorth": 1000
-		},
-
-		"hunters_boss_rews_ability_stone_d5": {
-			"type": "item",
-			"rarity": "LEGENDARY",
-			"content": "epicskills:ability_stone",
-			"amount": {
-				"min": 5,
-				"max": 5
-			},
-			"unitWorth": 1000
 		}
-
 
 	}
 
