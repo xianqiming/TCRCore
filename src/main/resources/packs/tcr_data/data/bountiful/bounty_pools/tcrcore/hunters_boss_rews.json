@@ -7,10 +7,10 @@
 			"rarity": "EPIC",
 			"content": "minecraft:netherite_ingot",
 			"amount": {
-				"min": 9,
-				"max": 10
+				"min": 1,
+				"max": 2
 			},
-			"unitWorth": 200
+			"unitWorth": 1000
 		},
 
         "hunters_normal_rews_gold_ingot": {
@@ -18,10 +18,10 @@
           "rarity": "EPIC",
           "content": "minecraft:netherite_scrap",
           "amount": {
-            "min": 45,
-            "max": 50
+            "min": 4,
+            "max": 10
           },
-          "unitWorth": 40
+          "unitWorth": 200
         },
 
         "hunters_normal_rews_diamond": {
@@ -29,10 +29,10 @@
           "rarity": "EPIC",
           "content": "minecraft:diamond",
           "amount": {
-            "min": 38,
-            "max": 40
+            "min": 8,
+            "max": 10
           },
-          "unitWorth": 50
+          "unitWorth": 200
         },
 
         "hunters_boss_rews_netherite_upgrade_smithing_template": {
@@ -46,10 +46,10 @@
           "unitWorth": 2000
         },
 
-        "hunters_boss_rews_ender_eye": {
+        "hunters_boss_rews_ender_pearl": {
             "type": "item",
             "rarity": "EPIC",
-            "content": "minecraft:ender_eye",
+            "content": "minecraft:ender_pearl",
             "amount": {
               "min": 8,
               "max": 10

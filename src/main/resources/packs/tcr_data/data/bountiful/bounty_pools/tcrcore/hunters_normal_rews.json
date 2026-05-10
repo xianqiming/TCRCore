@@ -70,10 +70,10 @@
       },
       "unitWorth": 200
     },
-    "hunters_normal_netherite_ingot": {
+    "hunters_normal_netherite_scrap": {
       "type": "item",
       "rarity": "RARE",
-      "content": "minecraft:netherite_ingot",
+      "content": "minecraft:netherite_scrap",
       "amount": {
         "min": 1,
         "max": 2
@@ -86,9 +86,9 @@
       "content": "irons_spellbooks:frozen_bone",
       "amount": {
         "min": 3,
-        "max": 10
+        "max": 5
       },
-      "unitWorth": 200
+      "unitWorth": 400
     },
     "hunters_normal_rews_lightning_bottle": {
       "type": "item",
@@ -96,9 +96,9 @@
       "content": "irons_spellbooks:lightning_bottle",
       "amount": {
         "min": 3,
-        "max": 10
+        "max": 5
       },
-      "unitWorth": 200
+      "unitWorth": 400
     },
     "hunters_normal_rews_divine_pearl": {
       "type": "item",
@@ -106,9 +106,9 @@
       "content": "irons_spellbooks:divine_pearl",
       "amount": {
         "min": 3,
-        "max": 10
+        "max": 5
       },
-      "unitWorth": 200
+      "unitWorth": 400
     },
     "hunters_normal_rews_blood_vial": {
       "type": "item",
@@ -116,9 +116,9 @@
       "content": "irons_spellbooks:blood_vial",
       "amount": {
         "min": 3,
-        "max": 10
+        "max": 5
       },
-      "unitWorth": 200
+      "unitWorth": 400
     },
     "hunters_normal_rews_bloody_vellum": {
       "type": "item",
@@ -126,9 +126,9 @@
       "content": "irons_spellbooks:bloody_vellum",
       "amount": {
         "min": 3,
-        "max": 10
+        "max": 5
       },
-      "unitWorth": 200
+      "unitWorth": 400
     },
     "hunters_normal_rews_firefly_jar": {
       "type": "item",
@@ -136,9 +136,9 @@
       "content": "irons_spellbooks:firefly_jar",
       "amount": {
         "min": 3,
-        "max": 10
+        "max": 5
       },
-      "unitWorth": 200
+      "unitWorth": 400
     }
   }
 }

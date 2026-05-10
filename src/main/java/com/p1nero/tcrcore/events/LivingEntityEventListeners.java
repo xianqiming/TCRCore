@@ -972,7 +972,7 @@ public class LivingEntityEventListeners {
     public static void onLivingMount(EntityMountEvent event) {
         if(!event.isCanceled() && event.isMounting() && !event.getEntity().level().isClientSide) {
             if(event.getEntityMounting().getType().is(Tags.EntityTypes.BOSSES)) {
-                event.getEntityMounting().stopRiding();
+                event.setCanceled(true);
                 if(!(event.getEntityBeingMounted() instanceof LivingEntity)) {
                     event.getEntityBeingMounted().discard();
                 }
