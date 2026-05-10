@@ -256,7 +256,7 @@ public class TCRItems {
 
     // 地狱 · 紫金武器（炽焰熔岩风格）
     public static final RegistryObject<Item> EMBERFANG = REGISTRY.register("emberfang", () -> new NetherMagicSwordItem(Tiers.NETHERITE, 3, -2.4F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC))); // 紫金短刃（匕首模板）
-    public static final RegistryObject<Item> MAGMAHEART = REGISTRY.register("magmaheart", () -> new NetherMagicSwordItem(Tiers.NETHERITE, 3, -2.4F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC))); // 紫金斧
+    public static final RegistryObject<Item> MAGMAHEART = REGISTRY.register("magmaheart", () -> new NetherMagicAxeItem(Tiers.NETHERITE, 3, -2.4F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC))); // 紫金斧
     public static final RegistryObject<Item> CINDERWYRM = REGISTRY.register("cinderwyrm", () -> new NetherMagicSwordItem(Tiers.NETHERITE, 3, -2.4F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC))); // 紫金长刀（太刀模板）
     public static final RegistryObject<Item> PURGING_SWALLOW = REGISTRY.register("purging_swallow", () -> new NetherMagicSwordItem(Tiers.NETHERITE, 3, -2.4F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC))); // 紫金雁翎（打刀模板）
     public static final RegistryObject<Item> PURGING_SWALLOW_SHEATH = REGISTRY.register("purging_swallow_sheath", () -> new Item(new Item.Properties().rarity(Rarity.EPIC)));

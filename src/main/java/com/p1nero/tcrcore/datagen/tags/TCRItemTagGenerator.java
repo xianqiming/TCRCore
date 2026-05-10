@@ -5,6 +5,7 @@ import com.p1nero.tcrcore.item.TCRItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
@@ -29,5 +30,7 @@ public class TCRItemTagGenerator extends ItemTagsProvider {
                 .add(TCRItems.DESERT_FRAGMENT.get())
                 .add(TCRItems.STORM_FRAGMENT.get())
                 .add(TCRItems.MECH_FRAGMENT.get());
+        this.tag(ItemTags.AXES)
+                .add(TCRItems.MAGMAHEART.get());
     }
 }

@@ -20,9 +20,9 @@
 			"content": "mowziesmobs:ferrous_wroughtnaut",
 			"amount": {
 				"min": 1,
-				"max": 1
+				"max": 2
 			},
-			"unitWorth": 4000
+			"unitWorth": 2000
 		},
       
 		"hunters_boss_obj_umvuthi": {
@@ -32,9 +32,9 @@
 			"content": "mowziesmobs:umvuthi",
 			"amount": {
 				"min": 1,
-				"max": 1
+				"max": 2
 			},
-			"unitWorth": 4000
+			"unitWorth": 2000
 		},
 
 		"hunters_boss_obj_frostmaw": {
@@ -44,9 +44,9 @@
 			"content": "mowziesmobs:frostmaw",
 			"amount": {
 				"min": 1,
-				"max": 1
+				"max": 2
 			},
-			"unitWorth": 4000
+			"unitWorth": 2000
 		},
 
 		"hunters_boss_obj_obsidilith": {
@@ -56,9 +56,9 @@
 			"content": "bosses_of_mass_destruction:obsidilith",
 			"amount": {
 				"min": 1,
-				"max": 1
+				"max": 2
 			},
-			"unitWorth": 4000
+			"unitWorth": 2000
 		},
 
 		"hunters_boss_obj_gauntlet": {
@@ -68,9 +68,9 @@
 			"content": "bosses_of_mass_destruction:gauntlet",
 			"amount": {
 				"min": 1,
-				"max": 1
+				"max": 2
 			},
-			"unitWorth": 4000
+			"unitWorth": 2000
 		},
 
 		"hunters_boss_obj_void_blossom": {
@@ -80,9 +80,9 @@
 			"content": "bosses_of_mass_destruction:void_blossom",
 			"amount": {
 				"min": 1,
-				"max": 1
+				"max": 2
 			},
-			"unitWorth": 4000
+			"unitWorth": 2000
 		}
 
 	}
