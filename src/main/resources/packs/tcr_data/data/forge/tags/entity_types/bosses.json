@@ -3,6 +3,10 @@
   "values": [
     "dodosmobs:bone_chimera",
     "epicfight_leonidas:leonidas",
-    "tcrcore:tcr_mimic"
+    "tcrcore:tcr_mimic",
+    "mowziesmobs:frostmaw",
+    "mowziesmobs:ferrous_wroughtnaut",
+    "mowziesmobs:umvuthi",
+    "mowziesmobs:sculptor"
   ]
 }
