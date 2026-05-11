@@ -302,10 +302,10 @@ public class LivingEntityEventListeners {
                     //有任务才会掉
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_DESERT_EYE)) {
                         givePlayerAward(player, 1, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(serverPlayer, TCRItems.ARTIFACT_TICKET.get(), 1);
                             }
-                        });
+                        }, false);
                         ItemUtils.addItemEntity(player, ModItems.DESERT_EYE.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
                     }
                     ItemUtils.addItemEntity(player, ItemRegistry.FIREFLY_JAR_ITEM.get(), 3, ChatFormatting.YELLOW.getColor().intValue());
@@ -313,27 +313,27 @@ public class LivingEntityEventListeners {
                 } else if (livingEntity instanceof OceanGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_OCEAN_EYE)) {
                         givePlayerAward(player, 1, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(serverPlayer, Items.NAUTILUS_SHELL, 6);
                             }
-                        });
+                        }, false);
                         ItemUtils.addItemEntity(player, ModItems.ABYSS_EYE.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                         ItemUtils.addItemEntity(player, ItemRegistry.ICY_FANG.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                     }
                     ItemUtils.addItemEntity(player, Items.HEART_OF_THE_SEA, 1, ChatFormatting.AQUA.getColor().intValue());
                 } else if (livingEntity instanceof LeonidasEntity) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_CURSED_EYE)) {
-                        givePlayerAward(player, 1);
+                        givePlayerAward(player, 1, false);
                         ItemUtils.addItemEntity(player, ModItems.CURSED_EYE.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                         ItemUtils.addItemEntity(player, TCRItems.NECROMANCY_SCROLL.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                     }
                 } else if (livingEntity instanceof CoreGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_FLAME_EYE)) {
                         givePlayerAward(player, 1, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(serverPlayer, UAItems.SUN_STONE.get(), 1);
                             }
-                        });
+                        }, false);
                         ItemUtils.addItemEntity(player, ModItems.FLAME_EYE.get(), 1, ChatFormatting.RED.getColor().intValue());
                     }
                     ItemUtils.addItemEntity(player, EFNItem.DUSKFIRE_INGOT.get(), 1, ChatFormatting.RED.getColor().intValue());
@@ -342,34 +342,34 @@ public class LivingEntityEventListeners {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_NETHER_MONOLITH_KEY_1)) {
                         TCRQuests.GET_NETHER_MONOLITH_KEY_1.finish(player, true);
                     }
-                    if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+                    if (TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
                         ItemUtils.addItemEntity(player, ItemRegistry.BLOODY_VELLUM.get(), 1, ChatFormatting.DARK_RED.getColor().intValue());
                     }
                 } else if (livingEntity instanceof EveningGhostEntity) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_NETHER_MONOLITH_KEY_2)) {
                         TCRQuests.GET_NETHER_MONOLITH_KEY_2.finish(player, true);
                     }
-                    if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+                    if (TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
                         ItemUtils.addItemEntity(player, Items.NETHERITE_SCRAP, 3, ChatFormatting.DARK_RED.getColor().intValue());
                     }
                 } else if (livingEntity instanceof NetherGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_MONST_EYE)) {
                         givePlayerAward(player, 1, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(player, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1, ChatFormatting.DARK_RED.getColor().intValue());
                             }
-                        });
+                        }, false);
                         ItemUtils.addItemEntity(player, ModItems.MONSTROUS_EYE.get(), 1, ChatFormatting.DARK_RED.getColor().intValue());
                     }
                     ItemUtils.addItemEntity(player, EFNItem.DUSKFIRE_INGOT.get(), 1, ChatFormatting.RED.getColor().intValue());
                 } else if (livingEntity instanceof WitherBoss) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_WITHER_EYE)) {
                         givePlayerAward(player, 1, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(serverPlayer, Items.WITHER_ROSE, 3, ChatFormatting.DARK_RED.getColor().intValue());
                             }
                             ItemUtils.addItemEntity(serverPlayer, TCRItems.WITHER_SOUL_STONE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
-                        });
+                        }, false);
                         ItemUtils.addItemEntity(player, ModItems.MECH_EYE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
                     }
                     ItemUtils.addItemEntity(player, Items.WITHER_ROSE, 1, ChatFormatting.DARK_RED.getColor().intValue());
@@ -377,23 +377,23 @@ public class LivingEntityEventListeners {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_AETHER_MONOLITH_KEY_1)) {
                         TCRQuests.GET_AETHER_MONOLITH_KEY_1.finish(player, true);
                     }
-                    if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+                    if (TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
                         ItemUtils.addItemEntity(player, ItemRegistry.LIGHTNING_BOTTLE.get(), 2, ChatFormatting.AQUA.getColor().intValue());
                     }
                 } else if (livingEntity instanceof GildedHunterEntity) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_AETHER_MONOLITH_KEY_2)) {
                         TCRQuests.GET_AETHER_MONOLITH_KEY_2.finish(player, true);
                     }
-                    if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+                    if (TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
                         ItemUtils.addItemEntity(player, Items.DIAMOND, 5, ChatFormatting.AQUA.getColor().intValue());
                     }
                 } else if (livingEntity instanceof SkyGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_STORM_EYE)) {
                         givePlayerAward(player, 1, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(serverPlayer, TCRItems.RARE_ARTIFACT_TICKET.get(), 1);
                             }
-                        });
+                        }, false);
                         FakeSkyGolem fakeSkyGolem = new FakeSkyGolem(player);
                         fakeSkyGolem.setPos(player.position());
                         fakeSkyGolem.setGlowingTag(true);
@@ -405,17 +405,17 @@ public class LivingEntityEventListeners {
                 } else if (livingEntity instanceof EndGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_VOID_EYE)) {
                         givePlayerAward(player, 2, serverPlayer -> {
-                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                            if (TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
                                 ItemUtils.addItemEntity(serverPlayer, UAItems.HERO_EMBLEM.get(), 1);
                             }
-                        });
+                        }, false);
                         FakeEndGolem fakeEndGolem = new FakeEndGolem(player);
                         fakeEndGolem.setPos(player.position().add(0, 3, 0));
                         fakeEndGolem.setGlowingTag(true);
                         player.serverLevel().addFreshEntity(fakeEndGolem);
                     }
 
-                //灾变娘奖励
+                    //灾变娘奖励
                 } else if (livingEntity instanceof ScyllaHumanoid) {
                     if (!PlayerDataManager.scyllaHumanoidKilled.get(player)) {
                         givePlayerAward(player, 3);
@@ -495,9 +495,7 @@ public class LivingEntityEventListeners {
                     serverPlayer.displayClientMessage(clickToReturn, false);
                 }));
 
-            }
-
-            else if(livingEntity instanceof Valkyrie) {
+            } else if (livingEntity instanceof Valkyrie) {
                 livingEntity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);//防止掉落
             }
 
@@ -530,7 +528,7 @@ public class LivingEntityEventListeners {
                         player.displayClientMessage(TCRCoreMod.getInfo("dragon_die_back").withStyle(ChatFormatting.GOLD), false);
                     } else {
                         List<Player> players = EntityUtils.getNearByPlayers(dragonBase, 32);
-                        if(!players.isEmpty()) {
+                        if (!players.isEmpty()) {
                             ItemUtils.addItemEntity(players.get(0), itemStack);
                         } else {
                             ItemUtils.addItemEntity(dragonBase, itemStack);
@@ -538,33 +536,26 @@ public class LivingEntityEventListeners {
                     }
                 }
                 dragonBase.getPersistentData().putBoolean(TRIGGERED, true);
-            }
-
-            else if (livingEntity instanceof IronGolem ironGolem && WorldUtils.isInStructure(livingEntity, WorldUtils.SKY_GOLEM) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
+            } else if (livingEntity instanceof IronGolem ironGolem && WorldUtils.isInStructure(livingEntity, WorldUtils.SKY_GOLEM) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                 //秽土转生
                 EntityRespawnerMod.createSoulEntity(ironGolem, 60, true);
                 ItemUtils.addItemEntity(livingEntity, TCRItems.DIVINE_FRAGMENT.get(), 1, ChatFormatting.GOLD.getColor().intValue());
                 livingEntity.getPersistentData().putBoolean("already_respawn", true);
-            }
-
-            else if(livingEntity instanceof EveningGhostEntity entity) {
+            } else if (livingEntity instanceof EveningGhostEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
-                if(soulEntity != null) {
+                if (soulEntity != null) {
                     soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtils.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
-            }
-
-            else if(livingEntity instanceof ValkyrieQueenEntity entity) {
+            } else if (livingEntity instanceof ValkyrieQueenEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
-                if(soulEntity != null) {
+                if (soulEntity != null) {
                     soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtils.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
-            }
-            else if(livingEntity instanceof GildedHunterEntity entity) {
+            } else if (livingEntity instanceof GildedHunterEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
-                if(soulEntity != null) {
+                if (soulEntity != null) {
                     soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtils.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
@@ -580,9 +571,7 @@ public class LivingEntityEventListeners {
                         BTEntityType.END_GOLEM.get().spawn(end, spawnPos, MobSpawnType.MOB_SUMMONED);
                     }
                 }
-            }
-
-            else if (livingEntity instanceof Bone_Chimera_Entity boneChimeraEntity) {
+            } else if (livingEntity instanceof Bone_Chimera_Entity boneChimeraEntity) {
                 if (WorldUtils.isInStructure(livingEntity, WorldUtils.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                     //偷懒，直接秽土转生
                     SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(boneChimeraEntity, 200, true);
@@ -610,7 +599,7 @@ public class LivingEntityEventListeners {
                 }
                 if (monolith != null) {
                     monolith.setKeyCountInEntity(1);//第二次只要一个
-                    if(entityType == BTEntityType.LAND_MONOLITH.get()) {
+                    if (entityType == BTEntityType.LAND_MONOLITH.get()) {
                         monolith.setKeyCountInEntity(2);
                     }
                 }
@@ -630,8 +619,8 @@ public class LivingEntityEventListeners {
             }
 
             //一些杂乱战利品
-            else if(livingEntity instanceof Wadjet_Entity || livingEntity instanceof Kobolediator_Entity) {
-                if(livingEntity.getRandom().nextBoolean()) {
+            else if (livingEntity instanceof Wadjet_Entity || livingEntity instanceof Kobolediator_Entity) {
+                if (livingEntity.getRandom().nextBoolean()) {
                     ItemUtils.addItemEntity(livingEntity, ModItems.NECKLACE_OF_THE_DESERT.get(), 1, ChatFormatting.GOLD.getColor());
                 }
             }
@@ -641,12 +630,10 @@ public class LivingEntityEventListeners {
 //                ItemUtils.addItemEntity(livingEntity, EFNItem.DEEPDARK_HEART.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
 //            }
 
-            else if(livingEntity instanceof The_Prowler_Entity) {
+            else if (livingEntity instanceof The_Prowler_Entity) {
                 ItemUtils.addItemEntity(livingEntity, Items.GUNPOWDER, 6, ChatFormatting.GOLD.getColor());
-            }
-
-            else if(livingEntity instanceof PiglinBrute) {
-                if(livingEntity.getTags().contains("tcr_drop_nether_golem_key") || WorldUtils.isInStructure(livingEntity, "tcrcore:gate_of_disaster")) {
+            } else if (livingEntity instanceof PiglinBrute) {
+                if (livingEntity.getTags().contains("tcr_drop_nether_golem_key") || WorldUtils.isInStructure(livingEntity, "tcrcore:gate_of_disaster")) {
                     ItemUtils.addItemEntity(livingEntity, BTItems.NETHER_MONOLITH_KEY.get(), 1, ChatFormatting.GOLD.getColor());
                 }
             }
@@ -669,10 +656,10 @@ public class LivingEntityEventListeners {
                     if (!(entity instanceof OwnableEntity) && entity instanceof LivingEntity living && !(entity instanceof Player)) {
                         //防堆命机制
                         living.setHealth(living.getMaxHealth());
-                        if(living instanceof BaseBossEntity baseBossEntity && baseBossEntity.level().dimension().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
+                        if (living instanceof BaseBossEntity baseBossEntity && baseBossEntity.level().dimension().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
                             //由于未知bug太多，我决定直接让它重生
                             SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(baseBossEntity, 40, true);
-                            if(soulEntity != null) {
+                            if (soulEntity != null) {
                                 soulEntity.setPos(0, 5, 0);
                             }
                             baseBossEntity.discard();
@@ -691,9 +678,9 @@ public class LivingEntityEventListeners {
                         }
                     }
                     //龙送回去
-                    if(entity instanceof DragonBase ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
+                    if (entity instanceof DragonBase ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
                         ServerLevel toRespawnLevel = serverLevel.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
-                        if(toRespawnLevel != null) {
+                        if (toRespawnLevel != null) {
                             entity.teleportTo(toRespawnLevel, WorldUtils.START_POS.getX(), WorldUtils.START_POS.getY(), WorldUtils.START_POS.getZ(), Set.of(), 0, 0);
                             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("pet_respawn", ownableEntity.getDisplayName()).withStyle(ChatFormatting.GOLD), false);
                         }
@@ -727,10 +714,22 @@ public class LivingEntityEventListeners {
         return item;
     }
 
-    public static void givePlayerAward(ServerPlayer player, int count) {
-        givePlayerAward(player, count, serverPlayer -> {});
+
+    public static void givePlayerAward(ServerPlayer player, int count, boolean share) {
+        givePlayerAward(player, count, serverPlayer -> {
+        }, share);
     }
 
+    public static void givePlayerAward(ServerPlayer player, int count) {
+        givePlayerAward(player, count, serverPlayer -> {
+        });
+    }
+
+    public static void givePlayerAward(ServerPlayer player, int count, Item item, boolean share) {
+        givePlayerAward(player, count, serverPlayer -> {
+            ItemUtils.addItemEntity(serverPlayer, item, 1, ChatFormatting.GOLD.getColor());
+        }, share);
+    }
     public static void givePlayerAward(ServerPlayer player, int count, Item item) {
         givePlayerAward(player, count, serverPlayer -> {
             ItemUtils.addItemEntity(serverPlayer, item, 1, ChatFormatting.GOLD.getColor());
@@ -738,22 +737,37 @@ public class LivingEntityEventListeners {
     }
 
     public static void givePlayerAward(ServerPlayer player, int count, @Nullable Consumer<ServerPlayer> anotherAward) {
-        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+        givePlayerAward(player, count, anotherAward, true);
+    }
+
+    public static void givePlayerAward(ServerPlayer player, int count, @Nullable Consumer<ServerPlayer> anotherAward, boolean shareToFTBTeam) {
+        if (TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
             count += 1;
         }
         final int finalCount = count;
-        FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-
-            ItemUtils.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), finalCount, ChatFormatting.YELLOW.getColor().intValue());
+        if(shareToFTBTeam) {
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                ItemUtils.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), finalCount, ChatFormatting.YELLOW.getColor().intValue());
+                if (finalCount > 2) {
+                    ItemUtils.addItemEntity(member, TCRItems.RARE_ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
+                } else {
+                    ItemUtils.addItemEntity(member, TCRItems.ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
+                }
+                if (anotherAward != null) {
+                    anotherAward.accept(member);
+                }
+            });
+        } else {
+            ItemUtils.addItemEntity(player, EpicSkillsItems.ABILIITY_STONE.get(), finalCount, ChatFormatting.YELLOW.getColor().intValue());
             if (finalCount > 2) {
-                ItemUtils.addItemEntity(member, TCRItems.RARE_ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
+                ItemUtils.addItemEntity(player, TCRItems.RARE_ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
             } else {
-                ItemUtils.addItemEntity(member, TCRItems.ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
+                ItemUtils.addItemEntity(player, TCRItems.ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
             }
-            if(anotherAward != null) {
-                anotherAward.accept(member);
+            if (anotherAward != null) {
+                anotherAward.accept(player);
             }
-        });
+        }
     }
 
     @SubscribeEvent
@@ -762,11 +776,11 @@ public class LivingEntityEventListeners {
             event.getEntity().setHealth(0);
         }
 
-        if(!(event.getEntity() instanceof Player)) {
-            if(event.getSource() instanceof EpicFightDamageSource epicFightDamageSource) {
+        if (!(event.getEntity() instanceof Player)) {
+            if (event.getSource() instanceof EpicFightDamageSource epicFightDamageSource) {
                 ResourceLocation registryName = epicFightDamageSource.getAnimation().registryName();
-                if(registryName != null && registryName.getNamespace().equals(WeaponsOfMinecraft.MODID)) {
-                    if(epicFightDamageSource.getStunType().equals(StunType.NEUTRALIZE)
+                if (registryName != null && registryName.getNamespace().equals(WeaponsOfMinecraft.MODID)) {
+                    if (epicFightDamageSource.getStunType().equals(StunType.NEUTRALIZE)
                             || epicFightDamageSource.getStunType().equals(StunType.HOLD)) {
                         epicFightDamageSource.setStunType(StunType.LONG);
                     }
@@ -799,11 +813,11 @@ public class LivingEntityEventListeners {
                 }
             }
             //优化多人肘击
-            if(baseBossEntity.level() instanceof ServerLevel serverLevel) {
-                if(serverLevel.players().size() > 1 && event.getSource().getEntity() instanceof Player) {
+            if (baseBossEntity.level() instanceof ServerLevel serverLevel) {
+                if (serverLevel.players().size() > 1 && event.getSource().getEntity() instanceof Player) {
                     int playerCount = EntityUtils.countOfNoneCreativeOrSpectator(serverLevel);
-                    if(playerCount > 1) {
-                        if(serverLevel.getEntities(baseBossEntity.getType(), Entity::isAlive).size() < playerCount) {
+                    if (playerCount > 1) {
+                        if (serverLevel.getEntities(baseBossEntity.getType(), Entity::isAlive).size() < playerCount) {
                             baseBossEntity.getType().spawn(serverLevel, baseBossEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
                             serverLevel.players().forEach(serverPlayer -> {
                                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("obey_rule").withStyle(ChatFormatting.RED), true);
@@ -813,8 +827,8 @@ public class LivingEntityEventListeners {
                     }
                 }
             }
-        } else if(event.getEntity() instanceof BaseSmallBossEntity boss) {
-            if(!boss.isInFighting() && event.getSource().getEntity() instanceof Player player) {
+        } else if (event.getEntity() instanceof BaseSmallBossEntity boss) {
+            if (!boss.isInFighting() && event.getSource().getEntity() instanceof Player player) {
                 player.displayClientMessage(TCRCoreMod.getInfo("talk_to_start").withStyle(ChatFormatting.GOLD), true);
             }
             if (event.getSource().is(DamageTypes.IN_WALL) || event.getSource().is(DamageTypes.OUTSIDE_BORDER)) {
@@ -828,15 +842,13 @@ public class LivingEntityEventListeners {
             if (boneChimeraEntity.isDeadOrDying()) {
                 event.setCanceled(true);
             }
-        }
-
-        else if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+        } else if (event.getEntity() instanceof ServerPlayer serverPlayer) {
 
             //被打死重置状态
             if (event.getSource().getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
                 boneChimeraEntity.getPersistentData().putBoolean("fighting", false);
             } else if (
-                    //打份怪获得buff
+                //打份怪获得buff
                     event.getSource().getEntity() instanceof Hollow
                             || event.getSource().getEntity() instanceof Lycanth
                             || event.getSource().getEntity() instanceof EvilSkeleton
@@ -872,8 +884,8 @@ public class LivingEntityEventListeners {
                 }
             }
             //保护冒险家接待员不被除了玩家的怪打死
-        } else if(event.getEntity() instanceof Villager villager) {
-            if(villager.getVillagerData().getProfession().equals(BountifulVillagers.RECEPTIONIST.get()) && !(event.getSource().getEntity() instanceof Player)) {
+        } else if (event.getEntity() instanceof Villager villager) {
+            if (villager.getVillagerData().getProfession().equals(BountifulVillagers.RECEPTIONIST.get()) && !(event.getSource().getEntity() instanceof Player)) {
                 event.setCanceled(true);
             }
         }
@@ -895,7 +907,7 @@ public class LivingEntityEventListeners {
                 }
             }
         }
-        if(ISS_TAGS == null) {
+        if (ISS_TAGS == null) {
             ISS_TAGS = Set.of(
                     ISSDamageTypes.BLOOD_MAGIC,
                     ISSDamageTypes.FIRE_MAGIC,
@@ -917,24 +929,24 @@ public class LivingEntityEventListeners {
             }
         }
         //防止连续硬直
-        if(!(event.getEntity() instanceof Player)) {
-            if(event.getSource() instanceof EpicFightDamageSource epicFightDamageSource) {
+        if (!(event.getEntity() instanceof Player)) {
+            if (event.getSource() instanceof EpicFightDamageSource epicFightDamageSource) {
                 ResourceLocation registryName = epicFightDamageSource.getAnimation().registryName();
-                if(registryName != null && registryName.getNamespace().equals(WeaponsOfMinecraft.MODID)) {
+                if (registryName != null && registryName.getNamespace().equals(WeaponsOfMinecraft.MODID)) {
                     event.getEntity().addEffect(new MobEffectInstance(EpicFightMobEffects.STUN_IMMUNITY.get(), 60, 0, false, false, false));
                     event.getEntity().addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 60, 0, false, false, false));
                 }
             }
         }
         //移除人形傀儡伤害
-        if(event.getSource().getEntity() instanceof TutorialHumanoid) {
+        if (event.getSource().getEntity() instanceof TutorialHumanoid) {
             event.setAmount(0.01F);
         }
     }
 
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
-        if(event.getEntity() instanceof TutorialGolem tutorialGolem && event.getSource().getEntity() instanceof ServerPlayer serverPlayer) {
+        if (event.getEntity() instanceof TutorialGolem tutorialGolem && event.getSource().getEntity() instanceof ServerPlayer serverPlayer) {
             tutorialGolem.addTotalDamage(event.getAmount());
             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("hurt_damage", String.format("%.2f / s", tutorialGolem.getTotalDamagePerSecond())).withStyle(ChatFormatting.GOLD), true);
             NetworkHandler.CHANNEL.sendToClientPlayer(serverPlayer, new ClientBoundDamageNumberMessage(event.getEntity(), event.getAmount(), event.getSource(), null));
@@ -970,10 +982,10 @@ public class LivingEntityEventListeners {
 
     @SubscribeEvent
     public static void onLivingMount(EntityMountEvent event) {
-        if(!event.isCanceled() && event.isMounting() && !event.getEntity().level().isClientSide) {
-            if(event.getEntityMounting().getType().is(Tags.EntityTypes.BOSSES)) {
+        if (!event.isCanceled() && event.isMounting() && !event.getEntity().level().isClientSide) {
+            if (event.getEntityMounting().getType().is(Tags.EntityTypes.BOSSES)) {
                 event.setCanceled(true);
-                if(!(event.getEntityBeingMounted() instanceof LivingEntity)) {
+                if (!(event.getEntityBeingMounted() instanceof LivingEntity)) {
                     event.getEntityBeingMounted().discard();
                 }
             }
@@ -999,35 +1011,35 @@ public class LivingEntityEventListeners {
             return;
         }
 
-        if(!(event.getEntity() instanceof LivingEntity livingEntity)) {
+        if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
 
         //全局的设置
-        if(!(livingEntity instanceof Player)) {
+        if (!(livingEntity instanceof Player)) {
             //处理多周目
-            if(serverLevel.getServer().isSingleplayer() && TCRPlayer.SARDINE_COUNT > 0) {
+            if (serverLevel.getServer().isSingleplayer() && TCRPlayer.SARDINE_COUNT > 0) {
                 handleNGPlus(livingEntity);
             }
             //处理难度
             Difficulty difficulty = TCRMainLevelSaveData.get(serverLevel).getDifficulty();
-            if(!difficulty.equals(Difficulty.NORMAL)) {
+            if (!difficulty.equals(Difficulty.NORMAL)) {
                 handleDifficulty(livingEntity, difficulty);
             }
         }
 
         //灾变人形送个重置石
         if (event.getEntity() instanceof BaseBossEntity baseBossEntity && serverLevel.dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) {
-            if(event.loadedFromDisk()) {
+            if (event.loadedFromDisk()) {
                 //由于未知bug太多，我决定直接让它重生
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(baseBossEntity, 10, true);
-                if(soulEntity != null) {
+                if (soulEntity != null) {
                     soulEntity.setPos(0, 5, 0);
                 }
                 event.setCanceled(true);
                 return;
             }
-            if(!baseBossEntity.getTags().contains(SoulEntity.TAG) && !baseBossEntity.getPersistentData().getBoolean("retracement_stone_given")) {
+            if (!baseBossEntity.getTags().contains(SoulEntity.TAG) && !baseBossEntity.getPersistentData().getBoolean("retracement_stone_given")) {
                 serverLevel.players().forEach(serverPlayer -> {
                     ItemUtils.addItemEntity(serverPlayer, TCRItems.RETRACEMENT_STONE.get().getDefaultInstance());
                     baseBossEntity.getPersistentData().putBoolean("retracement_stone_given", true);
@@ -1036,9 +1048,9 @@ public class LivingEntityEventListeners {
         }
 
         //设置出生点方便复活
-        if(event.getEntity() instanceof BaseSmallBossEntity boss) {
-            if(!boss.hasSpawnPos()) {
-                if(FMLEnvironment.production) {
+        if (event.getEntity() instanceof BaseSmallBossEntity boss) {
+            if (!boss.hasSpawnPos()) {
+                if (FMLEnvironment.production) {
                     BlockPos pos = boss.getOnPos();
                     while (!serverLevel.getBlockState(pos).isAir()) {
                         pos = pos.above();
@@ -1049,7 +1061,7 @@ public class LivingEntityEventListeners {
                 }
             }
             //除了黄金处刑者以外都要对话开启
-            if(!(boss instanceof GoldenExecutorEntity) && !boss.getTags().contains("started")) {
+            if (!(boss instanceof GoldenExecutorEntity) && !boss.getTags().contains("started")) {
                 boss.setInFighting(false);
                 boss.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                 TCRCoreMod.LOGGER.info("Boss [{}] 已限制对话开启挑战", boss.getDisplayName().getString());
@@ -1060,11 +1072,11 @@ public class LivingEntityEventListeners {
         if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
             if (WorldUtils.isInStructure(boneChimeraEntity, WorldUtils.BONE_CHIMERA_STRUCTURE)) {
                 TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
-                if(patch.isEmpty()) {
+                if (patch.isEmpty()) {
                     ModEntities.BONE_CHIMERA.get().spawn(serverLevel, boneChimeraEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
                     boneChimeraEntity.discard();
                     return;
-                } else if(!patch.hasSpawnPos()) {
+                } else if (!patch.hasSpawnPos()) {
                     patch.setSpawnPos(boneChimeraEntity.getOnPos());
                 }
             }
@@ -1078,22 +1090,22 @@ public class LivingEntityEventListeners {
         }
 
         //替换苦力怕，宝箱怪太粪了
-        if(event.getEntity() instanceof Mimic mimic) {
+        if (event.getEntity() instanceof Mimic mimic) {
             event.setCanceled(true);
             Creeper creeper = EntityType.CREEPER.spawn(serverLevel, mimic.getOnPos().above(), MobSpawnType.MOB_SUMMONED);
-            if(creeper != null) {
+            if (creeper != null) {
                 creeper.getPersistentData().putString("DeathLootTable", mimic.getType().getDefaultLootTable().toString());
             }
         }
 
         //防止玄武岩卡
-        if(event.getEntity() instanceof NetherGolem netherGolem) {
+        if (event.getEntity() instanceof NetherGolem netherGolem) {
             EntityUtils.destroyNearby(netherGolem, 5, true);
         }
 
         //移除远古守卫者在海洋塔的生成
         if (event.getEntity() instanceof Guardian || event.getEntity() instanceof ElderGuardian) {
-            if(WorldUtils.isInStructure(livingEntity, WorldUtils.OCEAN_GOLEM) || WorldUtils.isInStructure(livingEntity, WorldUtils.OCEAN_MONUMENT)) {
+            if (WorldUtils.isInStructure(livingEntity, WorldUtils.OCEAN_GOLEM) || WorldUtils.isInStructure(livingEntity, WorldUtils.OCEAN_MONUMENT)) {
 //                EntityType.DROWNED.spawn(serverLevel, livingEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
                 event.setCanceled(true);
                 return;
@@ -1132,12 +1144,12 @@ public class LivingEntityEventListeners {
         }
 
         //防止龙跑远了移除
-        if(event.getEntity() instanceof DragonBase dragonBase) {
+        if (event.getEntity() instanceof DragonBase dragonBase) {
             dragonBase.setPersistenceRequired();
         }
 
         //回满血
-        if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
+        if (event.getEntity() instanceof TutorialGolem tutorialGolem) {
             tutorialGolem.setHealth(tutorialGolem.getMaxHealth());
         }
 
@@ -1145,7 +1157,7 @@ public class LivingEntityEventListeners {
 
     //处理游戏难度的怪物加强
     private static void handleDifficulty(LivingEntity living, Difficulty difficulty) {
-        if(difficulty.equals(Difficulty.NORMAL) || difficulty.equals(Difficulty.PEACEFUL)) {
+        if (difficulty.equals(Difficulty.NORMAL) || difficulty.equals(Difficulty.PEACEFUL)) {
             return;
         }
         EntityPatch<?> entitypatch = EpicFightCapabilities.getEntityPatch(living, LivingEntityPatch.class);
@@ -1187,7 +1199,7 @@ public class LivingEntityEventListeners {
                 }
 
                 float atkMul = TCRPlayer.SARDINE_COUNT * 0.1F;
-                if(living instanceof AbstractGolem) {
+                if (living instanceof AbstractGolem) {
                     atkMul += 1;
                 }
                 AttributeInstance entityAttackDamage = living.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -1213,7 +1225,7 @@ public class LivingEntityEventListeners {
                     endGolem.setTarget(null);
                 }
             }
-        } else if(event.getEntity() instanceof WitherBoss witherBoss) {
+        } else if (event.getEntity() instanceof WitherBoss witherBoss) {
             //凋零破坏方块
             if (witherBoss.tickCount > 0 && witherBoss.tickCount % 20 == 0) {
                 destroyBlocksNearby(witherBoss);
@@ -1225,26 +1237,26 @@ public class LivingEntityEventListeners {
      * 简单暴力的群怪优化
      */
     public static void handleGroupTarget(LivingEntity living) {
-        if(living instanceof Mob mob) {
-            if(mob.getTarget() instanceof ServerPlayer serverPlayer) {
+        if (living instanceof Mob mob) {
+            if (mob.getTarget() instanceof ServerPlayer serverPlayer) {
                 //不处理自己的人形怪
-                if(mob.getType().is(Tags.EntityTypes.BOSSES)) {
+                if (mob.getType().is(Tags.EntityTypes.BOSSES)) {
                     return;
                 }
-                if(mob instanceof TutorialGolem) {
+                if (mob instanceof TutorialGolem) {
                     return;
                 }
-                if(EpicFightCapabilities.getUnparameterizedEntityPatch(mob, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
+                if (EpicFightCapabilities.getUnparameterizedEntityPatch(mob, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
                     return;
                 }
                 List<Entity> list = EntityUtils.getNearByEntities(mob, 16);
-                if(list.stream().anyMatch(entity -> {
-                    if(entity instanceof Mob mob1) {
+                if (list.stream().anyMatch(entity -> {
+                    if (entity instanceof Mob mob1) {
                         //让给人形怪先处理
-                        if(EpicFightCapabilities.getUnparameterizedEntityPatch(mob1, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
+                        if (EpicFightCapabilities.getUnparameterizedEntityPatch(mob1, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
                             return true;
                         }
-                        if(serverPlayer == mob1.getTarget()) {
+                        if (serverPlayer == mob1.getTarget()) {
                             return mob1.distanceTo(serverPlayer) < mob.distanceTo(serverPlayer);
                         }
                     }
@@ -1252,7 +1264,7 @@ public class LivingEntityEventListeners {
                 })) {
                     //存在同目标且距离更近的，就退让
                     mob.setTarget(null);
-                    if(mob.distanceTo(serverPlayer) < 5) {
+                    if (mob.distanceTo(serverPlayer) < 5) {
                         Vec3 dir = mob.position().subtract(serverPlayer.position()).normalize().scale(0.2);
                         mob.setDeltaMovement(dir.x, mob.getDeltaMovement().y, dir.z);
                     }
@@ -1260,19 +1272,19 @@ public class LivingEntityEventListeners {
             }
         }
     }
-    
+
     public static void destroyBlocksNearby(LivingEntity pLiving) {
         Vec3 offset = pLiving.getLookAngle().normalize().scale(0.5F);
         int ox = Mth.floor(pLiving.getX() + offset.x);
-        int oy = Mth.floor(pLiving.getY() + (double)0.25F);
+        int oy = Mth.floor(pLiving.getY() + (double) 0.25F);
         int oz = Mth.floor(pLiving.getZ() + offset.z);
         int width = Mth.ceil(pLiving.getBbWidth() / 2.0F);
         int height = Mth.ceil(pLiving.getBbHeight());
         boolean playEffectFlag = false;
 
-        for(int ix = ox - width; ix <= ox + width; ++ix) {
-            for(int iy = oy; iy <= oy + height; ++iy) {
-                for(int iz = oz - width; iz <= oz + width; ++iz) {
+        for (int ix = ox - width; ix <= ox + width; ++ix) {
+            for (int iy = oy; iy <= oy + height; ++iy) {
+                for (int iz = oz - width; iz <= oz + width; ++iz) {
                     BlockPos pos = new BlockPos(ix, iy, iz);
                     BlockState state = pLiving.level().getBlockState(pos);
                     boolean isChest = state.getBlock() instanceof BTChestBlock;
