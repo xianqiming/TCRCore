@@ -7,6 +7,10 @@
     "mowziesmobs:frostmaw",
     "mowziesmobs:ferrous_wroughtnaut",
     "mowziesmobs:umvuthi",
-    "mowziesmobs:sculptor"
+    "mowziesmobs:sculptor",
+    "bosses_of_mass_destruction:gauntlet",
+    "bosses_of_mass_destruction:lich",
+    "bosses_of_mass_destruction:obsidilith",
+    "bosses_of_mass_destruction:void_blossom"
   ]
 }
