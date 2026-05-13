@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.item.custom;
 import com.p1nero.battle_field1.PBF1Mod;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.ChatFormatting;
@@ -108,9 +109,7 @@ public class WitherSoulStoneItem extends SimpleDescriptionItem {
             if(serverLevel.dimension().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) && sanctum != null) {
                 player.changeDimension(sanctum, new PositionTeleporter(new BlockPos(WorldUtils.START_POS)));
             } else if(targetWorld != null){
-                boolean hasNonCreativeOrSpectator = targetWorld.players().stream()
-                        .anyMatch(p -> !p.isCreative() && !p.isSpectator());
-                if(!player.isCreative() && !player.isSpectator() && hasNonCreativeOrSpectator) {
+                if(!player.isCreative() && !player.isSpectator() && !EntityUtils.hasAllowedPlayerCount(targetWorld)) {
                     player.displayClientMessage(TCRCoreMod.getInfo("dim_max_players"), true);
                     player.setGameMode(GameType.SPECTATOR);
                 }

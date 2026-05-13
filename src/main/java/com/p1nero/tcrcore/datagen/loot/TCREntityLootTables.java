@@ -117,10 +117,7 @@ public class TCREntityLootTables extends EntityLootSubProvider {
                         .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get())))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(TCRItems.DIVINE_FRAGMENT.get())))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(AetherItems.GOLD_DUNGEON_KEY.get()))));
+                        .add(LootItem.lootTableItem(TCRItems.DIVINE_FRAGMENT.get()))));
         this.add(TCRBossEntities.VALKYRIE.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
@@ -138,10 +135,7 @@ public class TCREntityLootTables extends EntityLootSubProvider {
                         .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get())))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(TCRItems.DIVINE_FRAGMENT.get())))
-                .withPool(LootPool.lootPool()
-                        .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(AetherItems.SILVER_DUNGEON_KEY.get()))));
+                        .add(LootItem.lootTableItem(TCRItems.DIVINE_FRAGMENT.get()))));
         this.add(TCRBossEntities.GOLDEN_EXECUTOR.get(),  LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))

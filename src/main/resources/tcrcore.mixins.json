@@ -84,7 +84,8 @@
     "iss.MagicManagerMixin",
     "iss.ScrollItemMixin",
     "leonidas.LeonidasEntityMixin",
-    "leonidas.LeonidasForgeEventsMixin"
+    "leonidas.LeonidasForgeEventsMixin",
+    "multiplayer_boss_fight.BossManagerMixin"
   ],
   "client": [
     "AltarRendererMixin",
