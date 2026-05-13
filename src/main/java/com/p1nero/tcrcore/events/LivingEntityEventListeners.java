@@ -815,8 +815,8 @@ public class LivingEntityEventListeners {
             //优化多人肘击
             if (baseBossEntity.level() instanceof ServerLevel serverLevel) {
                 if (serverLevel.players().size() > 1 && event.getSource().getEntity() instanceof Player) {
-                    int playerCount = EntityUtils.countOfNoneCreativeOrSpectator(serverLevel);
-                    if (playerCount > 1) {
+                    if (EntityUtils.hasAllowedPlayerCount(serverLevel)) {
+                        int playerCount = EntityUtils.countOfNoneCreativeOrSpectator(serverLevel);
                         if (serverLevel.getEntities(baseBossEntity.getType(), Entity::isAlive).size() < playerCount) {
                             baseBossEntity.getType().spawn(serverLevel, baseBossEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
                             serverLevel.players().forEach(serverPlayer -> {
