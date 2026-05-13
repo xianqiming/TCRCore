@@ -321,6 +321,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "Ninehold");
         this.add(TCRItems.MAGIC_SPEAR.get(), "Heavenrend");
 
+        this.addInfo("use_command_to_modify_limit", "[Warning]: The maximum number of players has been reached. Please contact the administrator to use \"%s\" to modify the game rules.");
         this.addInfo("join_party_warning", "[Warning]: It is not recommended to play this modpack with your friend in same FTB Party team. If bound to the same FTB Party team, all main quest progress will be shared among the team, all choices made in the story will be synchronized across the team, and offline players may miss important items!");
         this.addInfo("possible_loot", "Possible Rewards:");
         this.addInfo("ocean_tower_breaking", "Ocean Tower is answering the Abyss... Please wait.");

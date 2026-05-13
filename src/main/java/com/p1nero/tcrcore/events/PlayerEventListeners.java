@@ -46,6 +46,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -294,7 +295,7 @@ public class PlayerEventListeners {
     @SubscribeEvent
     public static void onCurioEquip(CurioEquipEvent event) {
         if (illegalItems.contains(event.getStack().getItem())) {
-            /// F idea, connection可能null
+            ///connection可能null，估计优化模组干的= =
             if (event.getEntity() instanceof ServerPlayer player && player.connection != null  && !player.isCreative()) {
                 player.displayClientMessage(TCRCoreMod.getInfo("illegal_item_tip"), true);
                 event.setResult(Event.Result.DENY);
@@ -389,9 +390,9 @@ public class PlayerEventListeners {
                 if (event.getDimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) {
                     ServerLevel targetLevel = serverPlayer.server.getLevel(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY);
                     if (targetLevel != null) {
-                        boolean hasNonCreativeOrSpectator = EntityUtils.hasNonCreativeOrSpectator(targetLevel);
-                        if (hasNonCreativeOrSpectator) {
+                        if (!EntityUtils.hasAllowedPlayerCount(targetLevel)) {
                             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_max_players"), true);
+                            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("use_command_to_modify_limit", "/gamerule maxInfiniteSamsaraPlayerCount <count>").withStyle(ChatFormatting.RED), false);
                             serverPlayer.setGameMode(GameType.SPECTATOR);
                         }
                     }
@@ -419,12 +420,10 @@ public class PlayerEventListeners {
                 } else if (CataclysmDimensions.LEVELS.contains(event.getDimension())) {
                     ServerLevel targetLevel = serverPlayer.server.getLevel(event.getDimension());
                     if (targetLevel != null) {
-                        long realPlayerCount = targetLevel.players().stream()
-                                .filter(p -> !p.isCreative() && !p.isSpectator())
-                                .count();
-                        if (realPlayerCount >= 4) {
+                        if (!EntityUtils.hasAllowedPlayerCount(targetLevel)) {
                             event.setCanceled(true);
                             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_max_players"), false);
+                            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("use_command_to_modify_limit", "/gamerule maxInfiniteSamsaraPlayerCount <count>").withStyle(ChatFormatting.RED), false);
                         }
                     }
 
@@ -602,13 +601,13 @@ public class PlayerEventListeners {
                     serverPlayer.setGameMode(GameType.SPECTATOR);
                 }
             }
-            updateHealth(serverPlayer, event.getFrom());
-            updateHealth(serverPlayer, event.getTo());
+//            updateHealth(serverPlayer, event.getFrom());
+//            updateHealth(serverPlayer, event.getTo());
         }
     }
 
     /**
-     * 动态改变多人血量
+     * 动态改变多人血量，不用了，改用单独模组直接全局改之
      */
     public static void updateHealth(ServerPlayer serverPlayer, ResourceKey<Level> levelResourceKey) {
         if (CataclysmDimensions.LEVELS.contains(levelResourceKey)) {

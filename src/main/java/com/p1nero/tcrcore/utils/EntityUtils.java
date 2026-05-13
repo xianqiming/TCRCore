@@ -1,5 +1,9 @@
 package com.p1nero.tcrcore.utils;
 
+import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
+import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
+import com.p1nero.tcrcore.gamerule.TCRGameRules;
+import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
@@ -34,6 +38,14 @@ import java.util.function.Consumer;
 
 public class EntityUtils {
 
+    public static void adminsDo(ServerLevel targetLevel, Consumer<ServerPlayer> consumer) {
+        targetLevel.getServer().getPlayerList().getPlayers().forEach(serverPlayer -> {
+            if(serverPlayer.hasPermissions(2)) {
+                consumer.accept(serverPlayer);
+            }
+        });
+    }
+
     public static boolean hasNonCreativeOrSpectator(ServerLevel targetLevel) {
         if(targetLevel.players().isEmpty()) {
             return false;
@@ -45,6 +57,16 @@ public class EntityUtils {
     public static int countOfNoneCreativeOrSpectator(ServerLevel targetLevel) {
         return targetLevel.players().stream()
                 .filter(p -> !p.isCreative() && !p.isSpectator()).toList().size();
+    }
+
+    public static boolean hasAllowedPlayerCount(ServerLevel targetLevel) {
+        if(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY.equals(targetLevel.dimension())) {
+            return countOfNoneCreativeOrSpectator(targetLevel) < TCRGameRules.getMaxInfiniteSamsaraPlayerCount(targetLevel);
+        }
+        if(CataclysmDimensions.LEVELS.contains(targetLevel.dimension())) {
+            return countOfNoneCreativeOrSpectator(targetLevel) < TCRGameRules.getMaxCloudlandPlayerCount(targetLevel);
+        }
+        return true;
     }
 
     public static void destroyNearby(Entity living, float scale, boolean drop) {
