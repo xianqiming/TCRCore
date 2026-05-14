@@ -480,6 +480,8 @@
   "info.tcr.unlock_new_skill_page": "解锁了新的技能书界面！",
   "info.tcr.unlock_new_skill_sub": "按§6[%s]§r查看解锁的新技能",
   "info.tcr.use_command_to_modify_limit": "[警告]:已达人数上限，请联系管理员使用\"%s\"以修改游戏规则。",
+  "info.tcr.use_command_to_modify_limit1": "[警告]:已达人数上限，请联系管理员",
+  "info.tcr.use_command_to_modify_limit2": "使用\"%s\"以修改游戏规则。",
   "info.tcr.use_true_eye_tip": "请使用 [%s] 右键祭坛核心",
   "info.tcr.weapon_innate_charge_tutorial": "§6[完美闪避]§c或§6[完美招架]§c可以对部分武器进行充能！",
   "info.tcr.weapon_innate_tutorial": "按下§6[%s§6]键§f以释放武器技能",

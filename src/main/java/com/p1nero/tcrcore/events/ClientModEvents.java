@@ -148,6 +148,8 @@ public class ClientModEvents {
 //            }
 
             EpicFightClientHooks.Camera.ACTIVATE_TPS_CAMERA.registerEvent(BookOfDragonCameraManager::onEpicFightCameraSetup);
+
+            ClientForgeEvents.initSamsaraTip();
         });
     }
 

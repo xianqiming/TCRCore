@@ -480,6 +480,8 @@
   "info.tcr.unlock_new_skill_page": "A new skill book interface has been unlocked!",
   "info.tcr.unlock_new_skill_sub": "Press §6[%s]§r to check new skill",
   "info.tcr.use_command_to_modify_limit": "[Warning]: The maximum number of players has been reached. Please contact the administrator to use \"%s\" to modify the game rules.",
+  "info.tcr.use_command_to_modify_limit1": "[Warning]: The maximum number of players has been reached. Please contact the administrator",
+  "info.tcr.use_command_to_modify_limit2": "to use \"%s\" to modify the game rules.",
   "info.tcr.use_true_eye_tip": "Please use [%s] to right-click the altar core",
   "info.tcr.weapon_innate_charge_tutorial": "§6[Perfect Dodge]§c or §6[Perfect Parry]§c can charge certain weapons!",
   "info.tcr.weapon_innate_tutorial": "§6[[%s§6]§f to use your weapon's skill",

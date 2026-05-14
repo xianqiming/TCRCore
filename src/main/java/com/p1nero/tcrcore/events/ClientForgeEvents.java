@@ -1,6 +1,5 @@
 package com.p1nero.tcrcore.events;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.dialog_lib.events.ClientNpcEntityDialogueEvent;
@@ -15,9 +14,11 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.LevelLoadingScreen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraftforge.api.distmarker.Dist;
@@ -28,14 +29,31 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.*;
 
-import static net.minecraft.client.gui.components.BossHealthOverlay.GUI_BARS_LOCATION;
-
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID, value = Dist.CLIENT)
 public class ClientForgeEvents {
 
     public static Set<Button> buttonsInCreateWorldScreen = new HashSet<>();
 
     public static final ResourceLocation BACKGROUND_LOCATION = ResourceLocation.withDefaultNamespace("textures/gui/light_dirt_background.png");
+
+    public static MutableComponent component = null, component2 = null, component3 = null;
+    public static List<FormattedCharSequence> component2Lines = null;
+
+    public static void initSamsaraTip() {
+        if (component == null) {
+            Font font = Minecraft.getInstance().font;
+            component = TCRCoreMod.getInfo("exit_spectator_in_pbf1", TCRKeyMappings.EXIT_SPECTATOR.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.GOLD));
+            component2 = TCRCoreMod.getInfo("use_command_to_modify_limit1");
+            component3 = TCRCoreMod.getInfo("use_command_to_modify_limit2", "/gamerule maxInfiniteSamsaraPlayerCount <count>");
+            int wrapWidth = font.width(component);
+
+            if (wrapWidth < 100) {
+                wrapWidth = 100;
+            }
+
+            component2Lines = font.split(component2, wrapWidth);
+        }
+    }
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event){
@@ -52,19 +70,37 @@ public class ClientForgeEvents {
                 });
             }
         }
-
     }
 
     @SubscribeEvent
     public static void onRenderGui(RenderGuiEvent.Pre event) {
         if(!Minecraft.getInstance().isPaused() && Minecraft.getInstance().screen == null && Minecraft.getInstance().player != null) {
             if(Minecraft.getInstance().player.level().dimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY && Minecraft.getInstance().player.isSpectator()) {
-                MutableComponent component = TCRCoreMod.getInfo("exit_spectator_in_pbf1", TCRKeyMappings.EXIT_SPECTATOR.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.GOLD));
+
+                if (component == null) {
+                    initSamsaraTip();
+                }
+
                 GuiGraphics guiGraphics = event.getGuiGraphics();
                 Font font = Minecraft.getInstance().font;
                 PoseStack poseStack = guiGraphics.pose();
                 poseStack.pushPose();
-                guiGraphics.drawString(font, component, 10, 10, 0xFFFFFF, true);
+
+                int x = 10;
+                int y = 10;
+
+                guiGraphics.drawString(font, component, x, y, 0xFFFFFF, true);
+                y += font.lineHeight + 2;
+                guiGraphics.drawString(font, component2, x, y, 0xFFFFFF, true);
+                y += font.lineHeight + 2;
+                guiGraphics.drawString(font, component3, x, y, 0xFFFFFF, true);//忽然不是很想提示如何破解
+                //未知bug，拆不了= =，只能手动拆了
+//                y += font.lineHeight + 2;
+//                for (FormattedCharSequence line : component2Lines) {
+//                    guiGraphics.drawString(font, line, x, y, 0xFFFFFF, true);
+//                    y += font.lineHeight + 2;
+//                }
+
                 poseStack.popPose();
             }
         }
