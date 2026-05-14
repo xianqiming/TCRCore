@@ -31,6 +31,11 @@ public class TCRZHLangGenerator extends TCRLangProvider {
     @Override
     protected void addTranslations() {
 
+        this.add("gamerule.maxCloudlandPlayerCount", "最大幻境玩家数量");
+        this.add("gamerule.maxCloudlandPlayerCount.description", "多余的玩家将无法进入");
+        this.add("gamerule.maxInfiniteSamsaraPlayerCount", "最大轮回绝境玩家数量");
+        this.add("gamerule.maxInfiniteSamsaraPlayerCount.description", "多余的玩家将转为观察者模式");
+
         this.addTCRPonderText("falchion_basic_attack_combo", "基础连段演示", "普通攻击连段", "冲刺攻击派生", "跳跃攻击派生");
         this.addTCRPonderText("falchion_art", "武技", "通过方向键使用不同技能", "前进键 + 技能: 二连挑击", "左右方向键 + 技能: 全程霸体的快速斩击", "后退键 + 技能: 可击倒目标的横扫劈砍连招");
 

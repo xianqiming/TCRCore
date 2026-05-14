@@ -17,6 +17,7 @@ import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.events.LivingEntityEventListeners;
 import com.p1nero.tcrcore.events.PlayerEventListeners;
 import com.p1nero.tcrcore.gameassets.TCRSkillSlots;
+import com.p1nero.tcrcore.gamerule.TCRGameRules;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
@@ -74,6 +75,7 @@ public class TCRCoreMod {
         TCREffects.REGISTRY.register(bus);
         TCRStructures.STRUCTURE_TYPES.register(bus);
         TCRStructures.STRUCTURE_PIECE.register(bus);
+        TCRGameRules.register();
         context.registerConfig(ModConfig.Type.CLIENT, TCRClientConfig.SPEC);
     }
 

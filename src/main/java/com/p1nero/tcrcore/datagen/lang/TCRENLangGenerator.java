@@ -30,6 +30,10 @@ public class TCRENLangGenerator extends TCRLangProvider {
 
     @Override
     protected void addTranslations() {
+        this.add("gamerule.maxCloudlandPlayerCount", "Maximum Cloudland Player Count");
+        this.add("gamerule.maxCloudlandPlayerCount.description", "Excess players will be unable to enter");
+        this.add("gamerule.maxInfiniteSamsaraPlayerCount", "Maximum Infinite Samsara Player Count");
+        this.add("gamerule.maxInfiniteSamsaraPlayerCount.description", "Excess players will be switched to spectator mode");
 
         this.addTCRPonderText("falchion_basic_attack_combo", "Basic Attack Combo", "Basic Attacks", "Dash Attack", "Jump Attack");
         this.addTCRPonderText("falchion_art", "Skill", "Use different skills with direction keys", "Forward + Skill: Double upward slash", "Left/Right + Skill: Fast slash with full super armor", "Backward + Skill: Sweeping slash combo that can knock down enemies");
