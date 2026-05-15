@@ -240,9 +240,9 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                     .build();
         } else if (TCRQuests.TALK_TO_AINE_2.equals(currentQuest)) {
             return dialogueScreenBuilder.start(dBuilder.ans(33, localPlayer.getDisplayName(), WorldUtils.AETHER_NAME))
-                    .addOption(dBuilder.ans(34, WorldUtils.AETHER_NAME, TCREntities.AINE.get().getDescription()), dBuilder.opt(18, TCREntities.AINE.get().getDescription()))
-                    .addOption(dBuilder.ans(35), dBuilder.opt(13, TCREntities.AINE.get().getDescription()))
-                    .addOption(dBuilder.ans(36, com.github.L_Ender.cataclysm.init.ModItems.VOID_EYE.get().getDescription(), localPlayer.getDisplayName()), dBuilder.opt(-1))
+                    .addOption(dBuilder.opt(18, TCREntities.AINE.get().getDescription()), dBuilder.ans(34, WorldUtils.AETHER_NAME, TCREntities.AINE.get().getDescription()))
+                    .addOption(dBuilder.opt(13, TCREntities.AINE.get().getDescription()), dBuilder.ans(35))
+                    .addOption(dBuilder.opt(-1), dBuilder.ans(36, com.github.L_Ender.cataclysm.init.ModItems.VOID_EYE.get().getDescription(), localPlayer.getDisplayName()))
                     .addFinalOption(dBuilder.opt(-2), 11)
                     .build();
         } else if (TCRQuests.TALK_TO_AINE_GAME_CLEAR.equals(currentQuest)) {

@@ -1,7 +1,6 @@
 package com.p1nero.tcrcore.mixin;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,16 +22,13 @@ public class WOMLivingEntityEventsMixin {
     }
 
     /**
-     * 加非玩家的判断，防止bug
+     * 确保不卡无敌
      */
     @Inject(method = "onUpdateEvent", at = @At("HEAD"), cancellable = true, remap = false)
     private static void tcr$onLivingTick(LivingEvent.LivingTickEvent event, CallbackInfo ci) {
         ci.cancel();
-        Entity entity = event.getEntity();
+        LivingEntity entity = event.getEntity();
         if(entity.isInvulnerable() && !entity.level().isClientSide) {
-            if(entity instanceof Player player && !player.getAbilities().invulnerable) {
-                entity.setInvulnerable(false);
-            }
             LivingEntityPatch<?> entityPatch = EpicFightCapabilities.getEntityPatch(entity, LivingEntityPatch.class);
             if (entityPatch != null) {
                 for(String tag : event.getEntity().getTags()) {
