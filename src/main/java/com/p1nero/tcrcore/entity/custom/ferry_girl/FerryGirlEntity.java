@@ -118,7 +118,7 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
     private void initMerchant() {
         offersArtifact = new MerchantOffers();
         offersArtifact.add(new MerchantOffer(
-                new ItemStack(Items.ENDER_EYE, 1),
+                new ItemStack(Items.ENDER_PEARL, 1),
                 new ItemStack(ModBlocks.waystone, 1),
                 142857, 0, 0.02f));
 

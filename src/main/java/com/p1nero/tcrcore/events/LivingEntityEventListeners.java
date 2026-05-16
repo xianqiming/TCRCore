@@ -854,7 +854,6 @@ public class LivingEntityEventListeners {
                 serverPlayer.addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 100, 0));
                 serverPlayer.addEffect(new MobEffectInstance(EpicFightMobEffects.STUN_IMMUNITY.get(), 100, 0));
                 serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 3));
-                serverPlayer.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0));
             }
 
             EpicFightCapabilities.getUnparameterizedEntityPatch(serverPlayer, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {

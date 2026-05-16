@@ -29,11 +29,11 @@ public class WOMLivingEntityEventsMixin {
         ci.cancel();
         LivingEntity entity = event.getEntity();
         if(entity.isInvulnerable() && !entity.level().isClientSide) {
+            entity.setInvulnerable(false);
             LivingEntityPatch<?> entityPatch = EpicFightCapabilities.getEntityPatch(entity, LivingEntityPatch.class);
             if (entityPatch != null) {
                 for(String tag : event.getEntity().getTags()) {
                     if (tag.contains("wom_ultimate_Invulnerable")) {
-                        entity.setInvulnerable(false);
                         event.getEntity().getTags().remove(tag);
                         break;
                     }

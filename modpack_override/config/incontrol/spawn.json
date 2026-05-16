@@ -146,8 +146,28 @@
             "wom:saulomonk"
         ],
         "mincount": {
-            "amount": 2,
+            "amount": 1,
             "perplayer": true
+        },
+        "result": "deny"
+    },
+    {
+        "mob": [
+          "wom:hollow"
+        ],
+        "mincount": {
+          "amount": 1,
+          "perplayer": true
+        },
+        "result": "deny"
+    },
+    {
+        "mob": [
+          "wom:evil_skeleton"
+        ],
+        "mincount": {
+          "amount": 1,
+          "perplayer": true
         },
         "result": "deny"
     },
@@ -156,7 +176,7 @@
             "wom:lycanth"
         ],
         "mincount": {
-            "amount": 2,
+            "amount": 1,
             "perplayer": true
         },
         "result": "deny"
