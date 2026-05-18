@@ -1713,7 +1713,7 @@
 		"Enchantments To Register" = []
 
 	[experimental.enchantments_begone]
-		"Enchantments To Begone" = ["minecraft:unbreaking", "minecraft:mending", "obscure_api:fast_spin", "obscure_api:distance", "combat_evolution:massacre", "combat_evolution:intimidate"]
+		"Enchantments To Begone" = ["minecraft:unbreaking", "minecraft:binding_curse", "minecraft:mending", "obscure_api:fast_spin", "obscure_api:distance", "combat_evolution:massacre", "combat_evolution:intimidate"]
 
 	[experimental.game_nerfs]
 		#Makes Mending act like the Unmending mod
